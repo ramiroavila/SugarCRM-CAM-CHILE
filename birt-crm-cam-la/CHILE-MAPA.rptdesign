@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <text-property name="title">CAM CHILE Backlog Rev 3</text-property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaUser</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">7</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost/crmprod_sugarcrm</property>
+            <property name="odaUser">crmprod_sugarcrm</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">LkdmNDU3OTEu</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CHILE-MAP-QUERY" id="8">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">codigo_oportunidad_c</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CODIGO</text-property>
+                    <text-property name="heading">CODIGO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NOMBRE</text-property>
+                    <text-property name="heading">NOMBRE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROSPECCION GENERAL</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PROSPECCION GENERAL</text-property>
+                    <text-property name="heading">PROSPECCION GENERAL</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROSPECCION CONTINGENTE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PROSPECCION CONTINGENTE</text-property>
+                    <text-property name="heading">PROSPECCION CONTINGENTE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">EN_ESTUDIO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">EN_ESTUDIO</text-property>
+                    <text-property name="heading">EN_ESTUDIO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">APROBADO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">APROBADO</text-property>
+                    <text-property name="heading">APROBADO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ADJUDICACION</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ADJUDICACION</text-property>
+                    <text-property name="heading">ADJUDICACION</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PERDIDO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PERDIDO</text-property>
+                    <text-property name="heading">PERDIDO</text-property>
+                </structure>
+            </list-property>
+            <list-property name="filter"/>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">codigo_oportunidad_c</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">PROSPECCION GENERAL</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">PROSPECCION CONTINGENTE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">EN_ESTUDIO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">APROBADO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">ADJUDICACION</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">PERDIDO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">codigo_oportunidad_c</property>
+                    <property name="nativeName">codigo_oportunidad_c</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">PROSPECCION GENERAL</property>
+                    <property name="nativeName">PROSPECCION GENERAL</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">PROSPECCION CONTINGENTE</property>
+                    <property name="nativeName">PROSPECCION CONTINGENTE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">EN_ESTUDIO</property>
+                    <property name="nativeName">EN_ESTUDIO</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">APROBADO</property>
+                    <property name="nativeName">APROBADO</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">ADJUDICACION</property>
+                    <property name="nativeName">ADJUDICACION</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">PERDIDO</property>
+                    <property name="nativeName">PERDIDO</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities.name as NOMBRE, (SELECT MAX(DATE_FORMAT(a.date_created,'%d-%m-%Y')) FROM opportunities_audit a WHERE a.parent_id = opportunities.id AND a.field_name = 'sales_stage' AND a.after_value_string = 'PROSPECCION_GENERAL' LIMIT 1) as 'PROSPECCION GENERAL' , (SELECT MAX(DATE_FORMAT(b.date_created,'%d-%m-%Y')) FROM opportunities_audit b WHERE b.parent_id = opportunities.id AND b.field_name = 'sales_stage' AND b.after_value_string = 'PROSPECCION_CONTINGENTE' LIMIT 1) as 'PROSPECCION CONTINGENTE', (SELECT MAX(DATE_FORMAT(c.date_created,'%d-%m-%Y')) FROM opportunities_audit c WHERE c.parent_id = opportunities.id AND c.field_name = 'sales_stage' AND c.after_value_string = 'EN_ESTUDIO' LIMIT 1) as 'EN_ESTUDIO', (SELECT MAX(DATE_FORMAT(d.date_created,'%d-%m-%Y')) FROM opportunities_audit d WHERE d.parent_id = opportunities.id AND d.field_name = 'sales_stage' AND d.after_value_string = 'APROBADO' LIMIT 1) as 'APROBADO', (SELECT MAX(DATE_FORMAT(e.date_created,'%d-%m-%Y')) FROM opportunities_audit e WHERE e.parent_id = opportunities.id AND e.field_name = 'sales_stage' AND e.after_value_string = 'Closed Won' LIMIT 1) as 'ADJUDICACION', (SELECT MAX(DATE_FORMAT(f.date_created,'%d-%m-%Y')) FROM opportunities_audit f WHERE f.parent_id = opportunities.id AND f.field_name = 'sales_stage' AND f.after_value_string = 'Closed Lost' LIMIT 1) as 'PERDIDO' FROM opportunities INNER JOIN opportunities_cstm ON opportunities.id = opportunities_cstm.id_c WHERE opportunities.deleted = 0 ORDER BY opportunities_cstm.codigo_oportunidad_c ASC;]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="139">
+            <property name="dataSet">CHILE-MAP-QUERY</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">codigo_oportunidad_c</property>
+                    <text-property name="displayName">CODIGO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["codigo_oportunidad_c"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">NOMBRE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PROSPECCION GENERAL</property>
+                    <text-property name="displayName">PROSPECCION GENERAL</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PROSPECCION GENERAL"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PROSPECCION CONTINGENTE</property>
+                    <text-property name="displayName">PROSPECCION CONTINGENTE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PROSPECCION CONTINGENTE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">EN_ESTUDIO</property>
+                    <text-property name="displayName">EN_ESTUDIO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["EN_ESTUDIO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">APROBADO</property>
+                    <text-property name="displayName">APROBADO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["APROBADO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ADJUDICACION</property>
+                    <text-property name="displayName">ADJUDICACION</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ADJUDICACION"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PERDIDO</property>
+                    <text-property name="displayName">PERDIDO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PERDIDO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="183"/>
+            <column id="184"/>
+            <column id="185"/>
+            <column id="186"/>
+            <column id="187"/>
+            <column id="188"/>
+            <column id="189"/>
+            <column id="190"/>
+            <header>
+                <row id="140">
+                    <cell id="141">
+                        <label id="142">
+                            <text-property name="text">CODIGO</text-property>
+                        </label>
+                    </cell>
+                    <cell id="143">
+                        <label id="144">
+                            <text-property name="text">NOMBRE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="145">
+                        <label id="146">
+                            <text-property name="text">PROSPECCION GENERAL</text-property>
+                        </label>
+                    </cell>
+                    <cell id="147">
+                        <label id="148">
+                            <text-property name="text">PROSPECCION CONTINGENTE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="149">
+                        <label id="150">
+                            <text-property name="text">EN_ESTUDIO</text-property>
+                        </label>
+                    </cell>
+                    <cell id="151">
+                        <label id="152">
+                            <text-property name="text">APROBADO</text-property>
+                        </label>
+                    </cell>
+                    <cell id="153">
+                        <label id="154">
+                            <text-property name="text">ADJUDICACION</text-property>
+                        </label>
+                    </cell>
+                    <cell id="155">
+                        <label id="156">
+                            <text-property name="text">PERDIDO</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="157">
+                    <cell id="158">
+                        <data id="159">
+                            <property name="resultSetColumn">codigo_oportunidad_c</property>
+                        </data>
+                    </cell>
+                    <cell id="160">
+                        <data id="161">
+                            <property name="resultSetColumn">name</property>
+                        </data>
+                    </cell>
+                    <cell id="162">
+                        <data id="163">
+                            <property name="resultSetColumn">PROSPECCION GENERAL</property>
+                        </data>
+                    </cell>
+                    <cell id="164">
+                        <data id="165">
+                            <property name="resultSetColumn">PROSPECCION CONTINGENTE</property>
+                        </data>
+                    </cell>
+                    <cell id="166">
+                        <data id="167">
+                            <property name="resultSetColumn">EN_ESTUDIO</property>
+                        </data>
+                    </cell>
+                    <cell id="168">
+                        <data id="169">
+                            <property name="resultSetColumn">APROBADO</property>
+                        </data>
+                    </cell>
+                    <cell id="170">
+                        <data id="171">
+                            <property name="resultSetColumn">ADJUDICACION</property>
+                        </data>
+                    </cell>
+                    <cell id="172">
+                        <data id="173">
+                            <property name="resultSetColumn">PERDIDO</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="174">
+                    <cell id="175"/>
+                    <cell id="176"/>
+                    <cell id="177"/>
+                    <cell id="178"/>
+                    <cell id="179"/>
+                    <cell id="180"/>
+                    <cell id="181"/>
+                    <cell id="182"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
