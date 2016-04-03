@@ -1,0 +1,22 @@
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ingreso de casos</h3>
+  </div>
+  <div class="panel-body">
+    <p>Muchas gracias por contactarse con CAM, en unos instantes recibirá en su email un número de seguimiento para esta consulta.</p>
+    <p>CRM Cam La</p>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+  $('li#add').addClass("active");
+{% endblock %}
+

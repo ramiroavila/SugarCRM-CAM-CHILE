@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('default_index') }}">Inicio</a></li>
+  <li class="active">Role</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+
+   {% if entities | length > 0 %}
+    <table class="records_list table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th class="actions">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.name }}</td>
+                <td>        <a href="{{ path('role_show', { 'id': entity.id }) }}">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-zoom-in"></span> Ver
+                    </button>
+                  </a>
+
+        <a href="{{ path('role_edit', { 'id': entity.id }) }}">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-edit"></span> Editar
+                    </button>
+                  </a>
+
+   
+        <a href="{{ path('role_delete', { 'id': entity.id, 'token': csrf.generateCsrfToken('entity' ~ entity.id) }) }}" class="confirm">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-trash"></span> Borrar
+                    </button>
+                  </a>
+
+
+                
+               
+
+   
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="container" style="text-align: center; width:50%;">
+    <ul class="pagination">
+      <li {% if page < 2 %}class="disabled"{% endif %}><a href="{% if page < 2 %}javascript:void();{% else %}{{ path_previous }}{% endif %}">Anterior</a></li>
+      <li class="active"><a href="javascript:void()">{{ page }}</a><li>
+      <li {% if entities | length < 10 %}class="disabled"{% endif %}><a href="{% if entities | length < 10 %}javascript:void();{% else %}{{ path_next }}{% endif %}">Siguiente</a></li>
+    </ul>
+    </div>
+
+    {% else %}
+      <h4>No se encontraron registros.</h4>
+    {% endif %}
+
+        <p class="text-left">
+      <a href="{{ path('role_new') }}">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-plus"></span> Agregar
+                    </button>
+      </a>
+    </p>  
+
+    {% endblock %}

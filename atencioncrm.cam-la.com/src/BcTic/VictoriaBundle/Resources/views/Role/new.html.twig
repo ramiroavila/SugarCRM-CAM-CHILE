@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('default_index') }}">Inicio</a></li>
+  <li><a href="{{ path('role_index') }}">Role</a></li>
+  <li class="active">Agregar</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+    <h3>Agregar Role </h3>
+
+    {{ form(form) }}
+
+        <p class="text-left">
+
+                  
+</p>
+
+
+    <p class="text-left">
+    <a href="{{ path('role_index') }}">
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-th-list"></span> Volver
+      </button>
+    </a>
+    </p>{% endblock %}

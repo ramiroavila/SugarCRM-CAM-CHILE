@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('default_index') }}">Inicio</a></li>
+  <li><a href="{{ path('role_index') }}">Role</a></li>
+  <li class="active">Ver</li>
+</ol>
+{% endblock %}
+
+{% block body -%}
+    <h3>Ver Role</h3>
+
+    <table class="records_properties table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <p class="text-left">
+    <a href="{{ path('role_edit', { 'id': entity.id }) }}">
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-edit"></span> Editar
+      </button>
+    </a>
+
+        <a href="{{ path('role_delete', { 'id': entity.id, 'token': csrf.generateCsrfToken('entity' ~ entity.id) }) }}" class="confirm">
+                    <button type="button" class="btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-trash"></span> Borrar
+                    </button>
+                  </a>
+                  
+</p>
+
+
+    <p class="text-left">
+    <a href="{{ path('role_index') }}">
+      <button type="button" class="btn btn-default btn-xs">
+        <span class="glyphicon glyphicon-th-list"></span> Volver
+      </button>
+    </a>
+    </p>{% endblock %}

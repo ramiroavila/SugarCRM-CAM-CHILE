@@ -1,0 +1,10 @@
+bc_tic_victoria:
+    resource: "@BcTicVictoriaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+login_check:
+    pattern: /login_check
+ 
+logout:
+    pattern: /logout

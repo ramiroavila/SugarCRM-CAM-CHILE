@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Leonardo Barrientos C. BC TIC Chile">
+    <title>{% if title is defined %} {{ title }} {% else %} {% endif %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="//necolas.github.io/normalize.css/3.0.1/normalize.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.10.4.min.css">
+    {% stylesheets 
+      '@BcTicVictoriaBundle/Resources/public/css/style.css' 
+      '@BcTicVictoriaBundle/Resources/public/css/ui-lightness/jquery-ui-1.10.4.min.css'
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% endblock %}
+    {% block javascript %}
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  </head>
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            {% if app.user %}
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            {% endif %}
+            <a class="navbar-brand" href="{{ path('default_index') }}" >{% if home is defined %} {{ home }} {% else %} Inicio {% endif %}</a>
+          </div>
+          {% block menu %}{% endblock %}
+          <ul class="nav navbar-nav navbar-right">
+              {% if app.user %}
+              <li class="dropdown hidden-xs">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuario: {{ app.user.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('user_change_password') }}">Cambiar password</a></li>
+                  <li><a href="{{ path('logout') }}">Cerrar sesión</a></li>
+                </ul>  
+              </li>
+              {% endif %}
+              <!-- <li class="hidden-xs"><img alt="logo" style="height:35px; margin-top:7px; margin-right: 13px;" src="{{ asset('images/logo.jpg') }}"/></li> -->
+            </ul>
+        </div>
+      </nav>
+    </div>
+    <div id="content" class="container">
+    {% block breadcrumb %}{% endblock %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage }}
+      </div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage }}
+      </div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+    </div>
+    <br/>
+    <div class="footer text-center">
+      <p>&copy; {% if copyright is defined %} {{ copyright }} {% else %} {% endif %} <br/>{% if version is defined %} {{ version }} {% else %} {% endif %} </p>
+    </div>
+
+    <script type="text/javascript">
+
+      $('a.confirm').bind('click', function () {
+        return confirm("¿Está seguro que quiere borrar este registro?");
+      });
+      
+    {% block js %}{% endblock %}
+
+    </script>
+  </body>
+</html>

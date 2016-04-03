@@ -1,0 +1,7 @@
+assetic:
+    bundles:        [BcTicVictoriaBundle]
+
+twig:
+    form:
+        resources: 
+         - 'BcTicVictoriaBundle:Default:form_bootstrap_layout.html.twig' 

@@ -1,0 +1,5 @@
+bc_tic_atencion_crm_cam:
+    resource: "@BcTicAtencionCrmCamBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

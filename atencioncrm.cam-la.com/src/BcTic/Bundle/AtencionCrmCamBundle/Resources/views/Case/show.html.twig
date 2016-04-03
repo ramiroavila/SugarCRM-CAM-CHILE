@@ -1,0 +1,51 @@
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Seguimiento de casos</h3>
+  </div>
+  <div class="panel-body">
+    
+            <table class="table table-bordered">
+            <tr>
+              <th style="width: 25%; text-align: right;">Caso #</th>
+              <td id="ticket">{{ entity.ticket }}</td>
+            </tr>
+            <tr>
+              <th style="text-align: right;">Fecha</th>
+              <td id="created_at">{{ entity.createdAt | date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+              <th style="text-align: right;">Texto</th>
+              <td id="description">{{ entity.description }}</td>
+            </tr>
+            <tr>
+              <th style="text-align: right;">Estado</th>
+              <td id="status">{% set status = entity.status %} {{ status | trans }}</td>
+            </tr>
+            <tr>
+              <th style="text-align: right;">Solución</th>
+              <td id="resolution">{{ entity.resolution }}</td>
+            </tr>
+          </table>
+          <p style="float: right;"><a href="{{ path('case_index') }}">
+            <button class="btn btn-default btn-xs" type="button">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+                Volver
+              </button>
+          </a></p>
+    
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+  $('li#index').addClass("active");
+{% endblock %}
+

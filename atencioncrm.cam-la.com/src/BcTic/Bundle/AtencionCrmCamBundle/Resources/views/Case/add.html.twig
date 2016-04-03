@@ -1,0 +1,67 @@
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ingreso de casos</h3>
+  </div>
+  <div class="panel-body">
+    <p>Por favor ingrese sus datos y los de su consulta en el formulario siguiente:</p>
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+
+    <div class="form-group ">
+
+     {{ form_label(form.email, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+      </div>
+
+      {{ form_label(form.customerPhone, null, {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.customerPhone) }}
+      </div>
+
+    </div>
+
+    {{ form_row(form.company) }}
+
+    <div class="form-group ">
+    
+     {{ form_label(form.companyRole, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.companyRole) }}
+        {{ form_errors(form.companyRole) }}
+      </div>
+
+      {{ form_label(form.companyArea, null, {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.companyArea) }}
+      </div>
+
+    </div>
+
+    {{ form_end(form) }}    
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+  $('li#add').addClass("active");
+
+   $('#bctic_bundle_atencioncrmcambundle_customercase_description').maxlength({
+            alwaysShow: true,
+            showCharsTyped: false,
+            showMaxLength: false,
+            preText: 'Quedan ',
+            postText: ' carácteres disponibles.',
+   });
+
+{% endblock %}
+

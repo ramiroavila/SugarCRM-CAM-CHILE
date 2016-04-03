@@ -1,0 +1,22 @@
+{% extends 'BcTicVictoriaBundle:Default:base.html.twig' %}
+
+{% set title = "Atencion Clientes CAM" %}
+{% set home = "Atención Clientes CAM" %}
+
+{% set copyright = "CRM CAM 2014" %}
+{% set version = "Versión 4 12/07/2014" %}
+
+{% block javascript %}
+  {{ parent() }}
+  <script src="/js/bootstrap-maxlength.min.js"></script>
+{% endblock %}
+
+{% block menu %}
+            <ul class="nav navbar-nav">
+              <li id="add"><a href="{{ path('default_index') }}">Ingreso de caso</a></li>
+              <li id="index"><a href="{{ path('case_index') }}">Seguimiento de caso</a></li>
+            </ul>  
+            <ul class="nav navbar-nav navbar-right">
+              <li class="hidden-xs"><img alt="logo" style="height:35px; margin-top:7px; margin-right: 13px;" src="{{ asset('images/logo.jpg') }}"/></li>
+            </ul>
+{% endblock %}

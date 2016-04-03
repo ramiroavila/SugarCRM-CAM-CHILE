@@ -1,0 +1,28 @@
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">Seguimiento de casos</h3>
+  </div>
+
+  <div class="panel-body">
+
+    <div id="search">
+      <p>Por favor ingrese los datos de su caso en el formulario siguiente para poder ver el estado en que se encuentra:</p>
+      {{ form(form) }}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+  $('li#index').addClass("active");
+{% endblock %}
+

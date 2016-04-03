@@ -1,0 +1,96 @@
+a#logo {
+  background: url("../images/logo.jpg") left top no-repeat;
+  padding-left: 163px;
+  margin: 0px; 
+  padding-bottom: 36px;
+}
+
+div.footer {
+  padding-top:13px;
+  padding-bottom: 13px; 
+  background-color: #f7f7f9 !important;
+}
+
+.footer p {
+  font-size: 11px !important;  
+}
+
+.footer h4 {
+  color: #f26f21;
+}
+
+#content {
+  min-height: 470px;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+a button, button {
+  width: 75px;
+}
+
+table.records_list th.actions {
+  width: 250px;  
+}
+
+form div div.date select {
+  width: 90px;
+  float: left;
+  margin-right:3px;
+}
+
+form div div.time select {
+  width: 45px;
+  float: left;
+  margin-right:3px;
+}
+
+div.clear {
+  clear: left;
+}
+
+
+div#map-canvas {
+  height:600px;
+}
+
+div#mini-hidden-canvas {
+  height: 0px;
+}
+
+.form-horizontal .text-left {
+  text-align:left;
+}
+
+.survey .row div.col-sm-6 {
+  height: 45px;
+  padding-top: 5px; 
+  padding-bottom: 2px;
+}
+
+.survey .row div.col-sm-6 label { 
+  font-size:12px; 
+}
+
+
+.filter form {
+  font-size:11px;
+}
+
+.filter form select {
+  font-size:11px;
+  padding:0px;
+  height:25px;  
+}
+
+.spinner {
+  height: 100px;  
+  background: url("../images/spin.gif") no-repeat center;
+}
+
+.login {
+  border:1px solid #0e4062;
+  padding: 33px;  
+}
