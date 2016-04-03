@@ -34,7 +34,7 @@ class AtencionClientesCrmUpdateCommand extends ContainerAwareCommand
     {
 
         $output->writeln("CONECTANDO A WEBSERVICE VIA SOAP");
-      
+
         try {
 
           $normalizer = new GetSetMethodNormalizer();
@@ -45,25 +45,25 @@ class AtencionClientesCrmUpdateCommand extends ContainerAwareCommand
           $this->client = new \nusoap_client("http://crm.cam-la.com/service/v4/soap.php?wsdl", 'true');
 
           $this->executeLogin($input,$output);
-          
+
           $this->updateDataBase($input, $output, $serializer);
 
-        
+
         } catch (Exception $e) {
           $output->writeln("ERROR: ".$e->getMessage());
         }
-        
+
         $output->writeln("EJECUCION FINALIZADA. Good Bye!");
     }
-  
+
     private function executeLogin(InputInterface $input, OutputInterface $output) {
-    
+
        $output->writeln("EJECUTANDO AUTENTICACION.");
-      
+
        $login_parameters = array(
          'user_auth' => array(
               'user_name' => 'admin',
-              'password' => md5('.Gf45793.'),
+              'password' => md5($this->getContainer()->getParameter('passwd')),
               'version' => '1'
          ),
          'application_name' => 'SoapAlarmasCRM',
@@ -71,18 +71,18 @@ class AtencionClientesCrmUpdateCommand extends ContainerAwareCommand
        );
 
        $login_result = $this->client->call('login', $login_parameters);
-      
+
        if (isset($login_result['faultstring'])) throw new \Exception($login_result['detail']);
        if (empty($login_result['id'])) throw new \Exception("NO HAY ID DE SESION.");
-      
+
        $output->writeln("OK AUTENTICACION - SESSION ID: ".$login_result['id']);
        $this->sessionId = $login_result['id'];
-      
+
     }
 
-    private function updateDataBase(InputInterface $input, OutputInterface $output, $serializer) 
+    private function updateDataBase(InputInterface $input, OutputInterface $output, $serializer)
     {
-    
+
       $output->writeln("DESCARGANDO CASOS EN CRM");
 
       //Buscar los casos:
@@ -102,11 +102,11 @@ class AtencionClientesCrmUpdateCommand extends ContainerAwareCommand
 
        $result = $this->client->call('get_entry_list', $get_entry_list_parameters);
        if (isset($result['faultstring'])) throw new \Exception($result['detail']);
-      
+
        $itemsKeys = array();
 
        $customerCases = array();
-       
+
        foreach ($result['entry_list'] as $index => $items) {
          //Un nuevo objeto por cada item
          $customerCase = new CustomerCase();
@@ -114,9 +114,9 @@ class AtencionClientesCrmUpdateCommand extends ContainerAwareCommand
            $customerCase->setTicket($this->searchInResult(-1,$items,'case_number'));
            $customerCase->setName($this->searchInResult(-1,$items,'name'));
            $customerCase->setCreatedAt(strtotime($this->searchInResult(-1,$items,'date_entered')));
-           $customerCase->setStatus($this->searchInResult(-1,$items,'status')); 
-           $customerCase->setDescription($this->searchInResult(-1,$items,'description')); 
-           $customerCase->setResolution($this->searchInResult(-1,$items,'resolution')); 
+           $customerCase->setStatus($this->searchInResult(-1,$items,'status'));
+           $customerCase->setDescription($this->searchInResult(-1,$items,'description'));
+           $customerCase->setResolution($this->searchInResult(-1,$items,'resolution'));
          }
          $customerCases[$index] = $customerCase;
        }
@@ -158,6 +158,6 @@ class AtencionClientesCrmUpdateCommand extends ContainerAwareCommand
     }
     throw new \Exception("FILTRO NO ENCONTRADO");
   }
-  
-  
+
+
 }

@@ -34,7 +34,7 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
     {
 
         $output->writeln("CONECTANDO A WEBSERVICE VIA SOAP");
-      
+
         try {
 
           $normalizer = new GetSetMethodNormalizer();
@@ -61,22 +61,22 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
             //Ahora debo eliminar el archivo, pues con otro comando los obtengo y los voy actualizando para consulta cada 5 minutos.
             unlink($path.$file);
           }
-        
+
         } catch (Exception $e) {
           $output->writeln("ERROR: ".$e->getMessage());
         }
-        
+
         $output->writeln("EJECUCION FINALIZADA. Good Bye!");
     }
-  
+
     private function executeLogin(InputInterface $input, OutputInterface $output) {
-    
+
        $output->writeln("EJECUTANDO AUTENTICACION.");
-      
+
        $login_parameters = array(
          'user_auth' => array(
               'user_name' => 'admin',
-              'password' => md5('.Gf45793.'),
+              'password' => md5($this->getContainer()->getParameter('passwd')),
               'version' => '1'
          ),
          'application_name' => 'SoapAlarmasCRM',
@@ -84,18 +84,18 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
        );
 
        $login_result = $this->client->call('login', $login_parameters);
-      
+
        if (isset($login_result['faultstring'])) throw new \Exception($login_result['detail']);
        if (empty($login_result['id'])) throw new \Exception("NO HAY ID DE SESION.");
-      
+
        $output->writeln("OK AUTENTICACION - SESSION ID: ".$login_result['id']);
        $this->sessionId = $login_result['id'];
-      
+
     }
 
-    private function uploadToDataBase(CustomerCase $customerCase, InputInterface $input, OutputInterface $output) 
+    private function uploadToDataBase(CustomerCase $customerCase, InputInterface $input, OutputInterface $output)
     {
-    
+
       $output->writeln("CREANDO CASO EN CRM");
 
       $set_entry_parameters = array(
@@ -133,7 +133,7 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
 
        $result = $this->client->call('get_entry_list', $get_entry_list_parameters);
        if (isset($result['faultstring'])) throw new \Exception($result['detail']);
-      
+
        $itemsKeys = array();
        foreach ($result['entry_list'] as $items) {
          foreach ($items as $key => $data) {
@@ -171,13 +171,13 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
             ),
             'deleted'=> 0,
           );
-        
-          $resultRelationship = $this->client->call('set_relationship', $set_relationship_parameters); 
+
+          $resultRelationship = $this->client->call('set_relationship', $set_relationship_parameters);
           $output->writeln(" >>> CASO RELACIONADO A CLIENTE OK ".$accountId);
       }
 
       //El contacto del Caso, lo creo siempre.
-      $set_entry_parameters = array( 
+      $set_entry_parameters = array(
             "session" => $this->sessionId,
             "module_name" => "Contacts",
             //Record attributes
@@ -208,14 +208,14 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
             ),
             'deleted'=> 0,
           );
-        
+
       $resultRelationship = $this->client->call('set_relationship', $set_relationship_parameters);
       $output->writeln(" >>> CASO RELACIONADO A CONTACTO OK ".$contactId);
 
       //Ahora pongo el documento:
       if (strlen($customerCase->getUploadedFile()) > 0) {
 
-          $set_entry_parameters = array( 
+          $set_entry_parameters = array(
             "session" => $this->sessionId,
             "module_name" => "Notes",
             //Record attributes
@@ -241,7 +241,7 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
             ),
             'deleted'=> 0,
           );
-        
+
           $resultRelationship = $this->client->call('set_relationship', $set_relationship_parameters);
           $output->writeln(" >>> NOTA RELACIONADO A CASO OK ".$noteId);
 
@@ -278,7 +278,7 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
             ->setCc(array('cpp@cam-la.com'))
             ->setBody($body)
           ;
-        
+
           $this->getContainer()->get('mailer')->send($message);
           //El mensaje para el cliente:
 
@@ -299,7 +299,7 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
 
        $result = $this->client->call('get_entry_list', $get_entry_list_parameters);
        if (isset($result['faultstring'])) throw new \Exception($result['detail']);
-      
+
        $itemsKeys = array();
        foreach ($result['entry_list'] as $items) {
          $customerCase->setTicket($this->searchInResult(-1,$items,'case_number'));
@@ -338,6 +338,6 @@ class AtencionClientesCrmCommand extends ContainerAwareCommand
     }
     throw new \Exception("FILTRO NO ENCONTRADO");
   }
-  
-  
+
+
 }
