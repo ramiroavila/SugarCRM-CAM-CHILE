@@ -1,0 +1,44 @@
+<table class="lista">
+  <thead>
+  <tr>
+    <th></th>
+    <th>ENE</th>
+    <th>FEB</th>
+    <th>MAR</th>
+    <th>ABR</th>
+    <th>MAY</th>
+    <th>JUN</th>
+    <th>JUL</th>
+    <th>AGO</th>
+    <th>SEPT</th>
+    <th>OCT</th>
+    <th>NOV</th>
+    <th>DIC</th>
+    <th>PROM</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>% MARGEN NUEVOS<br/>INGRESOS</td>
+    {% for key, val in results %}
+    <td>{{ val }}%</td>
+    {% endfor %}
+    <td>{{ avg }}%</td>
+  </tr>
+  <!-- <tr>
+    <td>% MARGEN INGRESOS<br/>CONTRATOS MARCO</td>
+    {% for key, val in results_marco %}
+    <td>{{ val }}%</td>
+    {% endfor %}    
+    <td>{{ avg_marco }}%</td>
+  </tr> -->
+  <!--  <tr>
+    <th>% MARGEN INGRESOS<br/>TOTAL</td>
+    {% for key, val in results_total %}
+    <td>{{ val }}%</td>
+    {% endfor %}    
+    <td>{{ avg_total }}%</td>
+  </tr> -->
+
+  </tbody>
+</table>

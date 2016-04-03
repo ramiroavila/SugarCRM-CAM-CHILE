@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}  
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/css/jquery-ui-1.10.3.custom.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/css/jquery.fancybox.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('/js/jquery-1.9.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery.fancybox.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/swfobject.js') }}"></script>
+{% endblock %}
+  {% block container -%}
+    <div id="content">
+      <div id="header">
+        <div id="logo"></div>
+        <div id="menu">    
+          <ul>         
+            <li><a href="{{ path('panel_crm_homepage')}}" id="homepage">Inicio</a></li>
+            <li></li>
+          <ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div id="breadcrumb" class="round">        
+         Usted está en: Panel CRM &raquo; {% block breadcrumb %} Inicio {% endblock %}       
+      </div>
+      <div class="clear"></div>
+      <div id="normal">
+        {% block content -%}
+        {% endblock %} 
+      </div>
+    </div>
+    <div id="footer">
+      &copy; Proyecto Panel Crm Cam-La ~ Revisi&oacute;n 200.4 @leobarrientosc BC TIC
+    </div>
+  {% endblock %}
+  {% block javascripts %}
+  {% endblock %}

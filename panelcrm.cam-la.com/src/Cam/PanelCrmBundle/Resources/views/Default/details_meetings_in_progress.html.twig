@@ -1,0 +1,21 @@
+<tr>
+<td colspan="5">
+  <table class="lista panel_oportunidades" style="width:98%;">
+  <tr>
+    <th> AGENTE </th>
+    <th> # VISITAS </th>
+    <th> # VISITAS POR OPORTUNIDADES </th>
+    <th> TOTAL&nbsp;{{-anno-}}</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla">
+    <td> {{ data.owner }} </td>
+    <td> {{ data.meetings }} </td>
+    <td> {{ data.meetings_opportunities }} </td>
+    <td> {{ data.meetings + data.meetings_opportunities }}</td>
+  </tr>
+  {% endfor %}
+  </table>
+</td>
+</tr>  
+

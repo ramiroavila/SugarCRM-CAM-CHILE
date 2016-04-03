@@ -1,0 +1,41 @@
+<table class="lista panel_oportunidades" style="width:100%;">
+  <!-- <tr>
+    <th colspan="6">Principales oportunidades en {{ title }}</th>
+  </tr> -->
+  <tr>
+    <th> BU </th>
+    <th> MERCADO </th>
+    <th> STATUS </th>
+    <th> OPORTUNIDAD </th>
+    <th> CLIENTE </th>
+    <th> NÚM </th>
+    <th> AÑO ADJUDICACION</th>
+    <th> FECHA ADJUDICACION </th>
+    <th> MONTO MUSD </th>
+    <th> MARGEN ESPERADO </th>
+    <th> PROBABILIDAD</th>
+    <th> INGRESO PROBABILIDAD MARGEN AÑO DE INICIO</th>
+    <th> FACT. AÑO DE INICIO </th>
+    <th> INGRESOS AÑO DE INICIO </th>
+    <th> MARGEN AÑO DE INICIO</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla">
+    <td> {{ data.BU }} </td>
+    <td> {{ data.MERCADO }} </td>
+    <td> {{ data.STATUS }} </td>
+    <td> {{ data.NOMBRE }} </td>
+    <td> {{ data.CLIENTE }} </td>
+    <td> <a target="blank" href="{{ data.VER_DETALLE | raw }}">{{ data.NUMERO_DE_OPERACION }}</a></td>
+    <td> {{ data.ANNO_FECHA_ADJUDICACION }} </td>
+    <td> {{ data.FECHA_ADJUDICACION|date("d/m/Y")  }} </td>
+    <td> {{ data.MONTO_MUSD | number_format(0,'.',',')  }} </td>
+    <td> {{ data.MARGEN_ESPERADO }} </td>
+    <td> {{ data.PROBABILIDAD_DE_ADJUDICACION }} </td>
+    <td> {{ data.INGRESO_PROBABILIDAD_MARGEN_ANNO_DE_INICIO_CONTRATO }} </td>
+    <td> {{ data.FACTURACION_ANNO_DE_INICIO_CONTRATO }} </td>
+    <td> {{ data.INGRESOS_ANNO_DE_INICIO_CONTRATO | number_format(0,'.',',') }} </td>
+    <td> {{ data.MARGEN_ANNO_DE_INICIO_CONTRATO | number_format(0,'.',',') }}</td>
+  </tr>
+  {% endfor %}
+</table>

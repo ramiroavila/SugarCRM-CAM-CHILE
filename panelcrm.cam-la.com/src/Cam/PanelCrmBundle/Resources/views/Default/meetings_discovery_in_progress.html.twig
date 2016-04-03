@@ -1,0 +1,39 @@
+<table class="lista panel_oportunidades" style="width:100%;">
+  <tr>
+    <th> AGENTE </th>
+    <th> # VISITAS </th>
+    <th> # VISITAS POR OPORTUNIDADES </th>
+    <th> TOTAL&nbsp;{{-anno-}}</th>
+    <th> OPCIONES</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla" id="detalle_discovery_meetings_{{-data.assigned_user_id-}}">
+    <td> {{ data.owner }} </td>
+    <td> {{ data.meetings }} </td>
+    <td> {{ data.meetings_opportunities }} </td>
+    <td> {{ data.meetings + data.meetings_opportunities }}</td>
+    <td><a href="javascript:void(0)" id="ver_detalle_discovery_meetings_{{-data.assigned_user_id-}}">Ver detalle</a></td>    
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  {% for data in results %} 
+    $('#ver_detalle_discovery_meetings_{{-data.assigned_user_id-}}').bind('click', function (e) {
+
+       $.ajax({
+        url: Routing.generate('panel_detalle_discovery_por_agente', { 'anno': {{ anno }}, 'assigned_user_id': '{{-data.assigned_user_id-}}' }),       
+        cache: false,        
+        success: function (data) {
+          //OK
+          $(data).insertAfter("#detalle_discovery_meetings_{{-data.assigned_user_id-}}");    
+        },
+        error: function(a,b,c) {
+      
+        },       
+      }); 
+ 
+
+    });   
+  {% endfor %}
+</script>

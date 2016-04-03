@@ -1,0 +1,23 @@
+<table class="lista panel_oportunidades" style="width:100%;">
+  <tr>
+    <th colspan="6">Principales oportunidades en {{ title }}</th>
+  </tr>
+  <tr>
+    <th style="width: 200px;">OPORTUNIDAD</th>
+    <th>MONTO MU$D</th>
+    <th>F. ENTREGA</th>
+    <th>CLIENTE</th>
+    <th>RESPONSABLE</th>
+    <th style="width: 200px;">OBSERVACIONES</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla">
+    <td>{{ data.NOMBRE }}</td>
+    <td>${{ data.MONTO | number_format(0,'.',',')  }}</td>
+    <td>{{ data.FECHA|date("d/m/Y") }}</td>
+    <td>{{ data.CLIENTE }}</td>
+    <td>{{ data.USUARIO }}</td>
+    <td><p>{{ data.OBSERVACIONES }}</p></td>
+  </tr>
+  {% endfor %}
+</table>

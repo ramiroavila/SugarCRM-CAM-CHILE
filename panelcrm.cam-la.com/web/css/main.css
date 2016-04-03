@@ -1,0 +1,848 @@
+body {
+     color: #3E3E3E;
+     font-family: "Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+     font-size: 13px;
+     font-weight: normal;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 0px;
+     width: 100%;
+}
+
+div#content {
+     margin-left: auto;
+     margin-right: auto;
+     width: 1120px; 
+}
+
+div#header {
+     background-color: #FEFEFE;
+     height: 77px;
+     margin-bottom: 10px;
+     margin-top: 10px;
+}
+
+div#header div#logo {
+     background: url("../images/logo.jpg") no-repeat scroll left center transparent;
+     float: left;
+     height: 77px;
+     width: 263px;
+}
+
+div#header div#menu {
+     background-color: #5C5B5B;
+     float: left;
+     height: 67px;
+     margin-top: 10px;
+     width: 847px; 
+}
+
+div#header div#menu ul {
+     background-color: #858484;
+     height: 67px;
+     margin: 0px 0px 0px 10px;
+     padding: 0px;
+}
+
+div#header div#menu ul li {
+     float: left;
+     height: 67px;
+     list-style: none outside none;
+}
+
+div#header div#menu ul li.final {
+    
+}
+
+div#header div#menu ul li a {
+     color: #FFFFFF;
+     display: block;
+     font-size: 16px;
+     font-weight: normal;
+     height: 42px;
+     padding-top: 25px;
+     text-align: center;
+     text-decoration: none;
+     width: 150px;
+}
+
+div#header div#menu ul li a:hover, div#header div#menu ul li a.selected {
+     background-color: #A7A7A7 ! important;
+     color: #FFFFFF;
+     text-decoration: underline;
+}
+
+div#breadcrumb {
+     color: #858384;
+     font-size: 11px;
+     height: 12px;
+     margin-bottom: 10px;
+     padding-top: 0px;
+}
+
+div#breadcrumb #settings {
+     float: right;
+     margin-right: 10px;
+}
+
+div#normal {
+     margin-bottom: 10px;
+     padding: 10px; 
+}
+
+div#normal h1 {
+     color: #FB6202;
+     font-size: 18px;
+     margin: 0px;
+     padding: 0px;
+}
+
+div#normal h2 {
+     color: #FB6202;
+     font-size: 14px;
+     font-weight: bold;
+     margin: 0px 0px 10px;
+     padding: 0px;
+}
+
+div#normal h3 {
+     font-size: 13px;
+     font-style: italic;
+     margin: 5px;
+}
+
+div#normal table.lista {
+     border: 1px solid #888888;
+     margin: 10px;
+     padding: 0px;
+     width: 98%;
+}
+
+div#normal table.lista th {
+     background-color: #888888;
+     color: #FFFFFF;
+}
+
+div#normal table.lista td {
+     border: 1px solid #888888;
+     padding-left: 5px;
+     padding-right: 5px;
+}
+
+table.lista_popup {
+     border: 1px solid #888888;
+     margin: 10px;
+     padding: 0px;
+     width: 900px;
+}
+
+table.lista_popup th {
+     background-color: #888888;
+     color: #FFFFFF;
+}
+
+table.lista_popup td {
+     border: 1px solid #888888;
+     padding-left: 5px;
+     padding-right: 5px;
+     vertical-align: top;
+}
+
+div#footer {
+     background: none repeat scroll 0% 0% #858384;
+     color: #FFFFFF;
+     font-size: 13px;
+     font-weight: bold;
+     height: 40px;
+     margin-bottom: 10px;
+     padding: 20px;
+     text-align: right;
+}
+
+div.clear {
+     clear: left;
+}
+
+a {
+     color: #FB6202;
+}
+
+a:hover {
+     color: #FFCC00;
+}
+
+form {
+     margin-bottom: 10px;
+}
+
+form table tbody th {
+     text-align: right;
+     vertical-align: middle;
+}
+
+form table tbody td {
+     text-align: left;
+     vertical-align: top;
+     width: 250px;
+}
+
+form table tbody label {
+    
+}
+
+form table tbody label:after {
+     content: ":";
+}
+
+form table tbody td input {
+     margin-left: 0px;
+     width: 245px;
+}
+
+form table tbody td select {
+     margin-left: 0px;
+     width: 155px;
+}
+
+form table tfoot td {
+    
+}
+
+form table tfoot td input {
+     width: 155px;
+}
+
+form table tfoot td a {
+     display: block;
+     margin-top: 10px;
+}
+
+div#periodo_tabs {
+     margin-left: 10px;
+     margin-top: 10px;
+}
+
+div#periodo_tabs div a {
+     background: url("../images/tab.png") repeat scroll 0% 0% transparent;
+     color: #FFFFFF;
+     display: block;
+     float: left;
+     font-size: 15px;
+     font-weight: bold;
+     height: 32px;
+     overflow: hidden;
+     padding-top: 8px;
+     position: relative;
+     text-align: center;
+     text-decoration: none;
+     top: 2px;
+     width: 190px;
+}
+
+div#periodo_tabs div a:hover, div#periodo_tabs div.selected a {
+     background: url("../images/tab-hover.png") repeat scroll 0% 0% transparent;
+}
+
+div.periodo {
+     border: 2px solid #FB6202;
+     padding: 10px 20px 20px;
+}
+
+div.estadistica {
+     background-color: #F9F9F9;
+     border: 2px solid #F3F3F3;
+     margin-left: 10px;
+     margin-right: 10px;
+     margin-top: 30px;
+}
+
+div.estadistica div.fondo {
+     background-color: #D9D9D9;
+     border: 2px solid #D3D3D3;
+     margin-bottom: 10px;
+     margin-left: 10px;
+     margin-right: 10px;
+}
+
+div.estadistica h3 {
+     font-size: 14px;
+     font-style: normal;
+     margin-left: 15px;
+     margin-top: 0px ! important;
+     padding-top: 0px ! important;
+}
+
+div.estadistica span {
+     font-style: normal;
+     font-weight: bold;
+     margin-left: 15px;
+     margin-top: 0px ! important;
+     padding-top: 0px ! important;
+}
+
+div.tipo {
+     height: 40px ! important;
+     margin-left: auto;
+     margin-right: auto;
+     position: relative;
+     text-align: center;
+     top: -20px;
+     width: 765px;
+}
+
+div.tipo a {
+     color: #FFFFFF;
+     font-size: 15px;
+     font-weight: bold;
+     height: 32px;
+     overflow: hidden;
+     padding-top: 8px;
+     text-decoration: none;
+     width: 190px;
+}
+
+div.tipo a.izquierda {
+     background: url("../images/opcion.png") repeat scroll 0% 0% transparent;
+     float: left;
+}
+
+div.tipo a.izquierda:hover, div.tipo .selected a.izquierda {
+     background: url("../images/opcion-hover.png") repeat scroll 0% 0% transparent;
+}
+
+div.tipo a.centro {
+     background: url("../images/opcion-centro.png") repeat scroll 0% 0% transparent;
+     float: left;
+}
+
+div.tipo a.centro:hover, div.tipo .selected a.centro {
+     background: url("../images/opcion-centro-hover.png") repeat scroll 0% 0% transparent;
+}
+
+div.tipo a.derecha {
+     background: url("../images/opcion-derecha.png") repeat scroll 0% 0% transparent;
+     float: left;
+}
+
+div.tipo a.derecha:hover, div.tipo .selected a.derecha {
+     background: url("../images/opcion-derecha-hover.png") repeat scroll 0% 0% transparent;
+}
+
+div.estadistica_datos {
+     position: relative;
+     top: -10px;
+}
+
+ul.pasos {
+     margin-left: auto;
+     margin-right: auto;
+     width: 900px;
+}
+
+ul.pasos li {
+     border: 1px solid #999999;
+     float: left;
+     list-style: none outside none;
+     margin-bottom: 10px;
+     margin-right: 10px;
+     width: 435px;
+}
+
+ul.pasos li.fila {
+     border: 1px solid #999999;
+     float: left;
+     list-style: none outside none;
+     margin-bottom: 10px;
+     margin-right: 10px;
+     width: 882px;
+}
+
+ul.pasos li div.paso {
+     color: #888888;
+     float: left;
+     font-size: 40px;
+     text-align: center;
+     width: 60px;
+}
+
+ul.pasos li div.valor {
+     color: #888888;
+     float: left;
+     font-size: 40px;
+     padding-top: 10px;
+     text-align: left;
+     width: 85%;
+}
+
+ul.pasos li.fila div.valor {
+     width: 90%;
+}
+
+ul.pasos li.fila div.valor ul li {
+     border: 0px none;
+     font-size: 16px;
+     width: 100%;
+}
+
+ul.pasos a:active, ul.pasos a:visited, ul.pasos a:link {
+     font-size: 18px;
+}
+
+div.ui-datepicker-inline {
+     font-size: 14px;
+     margin: 5px;
+}
+
+div.ui-datepicker-inline table.ui-datepicker-calendar thead {
+     font-size: 14px ! important;
+}
+
+table.reporte input {
+     text-align: right;
+     width: 40px;
+}
+
+div.ancho {
+     width: 760px ! important;
+}
+
+div.centro {
+     height: 40px ! important;
+     margin-bottom: 10px;
+     margin-left: auto;
+     margin-right: auto;
+     position: relative;
+     text-align: center ! important;
+     top: 0px;
+     width: 380px;
+}
+
+div.centro a, div.centro a:visited, div.centro a:link {
+     color: #FFFFFF;
+     font-size: 15px ! important;
+     font-weight: bold;
+     height: 32px;
+     overflow: hidden;
+     padding-top: 8px;
+     text-decoration: none ! important;
+     width: 190px;
+}
+
+div.centro a:hover {
+     text-decoration: underline ! important;
+}
+
+div.centro a.izquierda {
+     background: url("../images/opcion.png") repeat scroll 0% 0% transparent;
+     cursor: pointer ! important;
+     float: left;
+}
+
+div.centro .selected a.izquierda {
+     background: url("../images/opcion-hover.png") repeat scroll 0% 0% transparent;
+     cursor: pointer ! important;
+     font-size: 15px ! important;
+}
+
+div.centro a.centro {
+     background: url("../images/opcion-centro.png") repeat scroll 0% 0% transparent;
+     cursor: pointer ! important;
+     float: left;
+}
+
+div.centro .selected a.centro {
+     background: url("../images/opcion-centro-hover.png") repeat scroll 0% 0% transparent;
+     cursor: pointer ! important;
+     font-size: 15px ! important;
+}
+
+div.centro a.derecha {
+     background: url("../images/opcion-derecha.png") repeat scroll 0% 0% transparent;
+     cursor: pointer ! important;
+     float: left;
+}
+
+div.centro .selected a.derecha {
+     background: url("../images/opcion-derecha-hover.png") repeat scroll 0% 0% transparent;
+     cursor: pointer ! important;
+     font-size: 15px ! important;
+}
+
+div.separacion {
+     margin-bottom: 10px;
+}
+
+input.cuatro_digitos {
+     width: 40px ! important;
+}
+
+input.doce_digitos {
+     width: 115px ! important;
+}
+
+p.success {
+     background-color: #BCCF5D;
+     border: 2px solid #008300;
+     color: #FFFFFF ! important;
+     font-size: 15px ! important;
+     font-weight: bold;
+     margin: 10px auto;
+     padding: 5px ! important;
+     text-align: justify ! important;
+     width: 70%;
+}
+
+div.flash-notice {
+     background-color: #BCCF5D;
+     border: 2px solid #008300;
+     color: #FFFFFF ! important;
+     font-size: 13px ! important;
+     font-weight: bold;
+     margin: 10px auto;
+     padding: 5px ! important;
+     text-align: center ! important;
+     width: 70%;
+}
+
+table.buscador {
+     margin-left: auto;
+     margin-right: auto;
+}
+
+table.buscador input {
+     width: 352px;
+}
+
+table.buscador select {
+     width: 356px;
+}
+
+table.buscador input.buscar {
+     width: 100px;
+}
+
+table tr.fecha td select {
+     width: 103px;
+}
+
+table.buscador tr th {
+     padding-right: 5px;
+     width: 150px;
+}
+
+table.buscador tr td textarea {
+     height: 140px;
+     width: 352px;
+}
+
+div.spinner {
+     background: url("/images/spinner.gif") no-repeat scroll center bottom transparent;
+     color: #999999;
+     font-size: 15px;
+     height: 60px;
+     padding-top: 13px;
+     text-align: center;
+}
+
+a.agregar_llamada {
+     background: url("../images/add.png") no-repeat scroll left center transparent;
+     display: block;
+     float: left;
+     padding-bottom: 7px;
+     padding-left: 25px;
+     padding-top: 7px;
+     width: 110px;
+}
+
+a.ver_llamadas {
+     background: url("../images/edit-find.png") no-repeat scroll left center transparent;
+     display: block;
+     float: left;
+     padding-bottom: 7px;
+     padding-left: 25px;
+     padding-top: 7px;
+     width: 110px;
+}
+
+a.ver_casos {
+     background: url("../images/help-browser.png") no-repeat scroll left center transparent;
+     display: block;
+     float: left;
+     padding-bottom: 7px;
+     padding-left: 25px;
+     padding-top: 7px;
+     width: 110px;
+}
+
+a.ver_oportunidades {
+     background: url("../images/document-open.png") no-repeat scroll left center transparent;
+     display: block;
+     float: left;
+     padding-bottom: 7px;
+     padding-left: 25px;
+     padding-top: 7px;
+     width: 110px;
+}
+
+form label {
+     display: block;
+     float: left;
+     font-size: 12px;
+     margin-right: 3px;
+     padding-top: 3px;
+     text-align: right;
+     width: 180px;
+}
+
+form input {
+     text-align: left;
+     width: 200px;
+}
+
+form div select {
+     text-align: left;
+     width: 203px ! important;
+}
+
+form div textarea {
+     height: 50px;
+     text-align: left;
+     width: 197px ! important;
+}
+
+form input.submit {
+     text-align: center ! important;
+     width: 200px;
+}
+
+div ul#paginator {
+     list-style: none outside none;
+     text-align: center;
+}
+
+div ul#paginator li a {
+     padding-left: 5px;
+     padding-right: 5px;
+}
+
+td.verde {
+     background-color: #6BEB3C;
+}
+
+td.amarillo {
+     background-color: #FB9E02;
+}
+
+td.rojo {
+     background-color: #ED0227;
+}
+
+ul li a.xls {
+     background: url("../images/xls-icon.png") no-repeat scroll left top transparent;
+     display: block;
+     font-size: 15px;
+     height: 30px;
+     padding-left: 40px;
+     padding-top: 10px;
+}
+
+div#normal ul li {
+     list-style: none inside none;
+}
+
+div#normal ul {
+    
+}
+
+div#acumulado_de_ingresos {
+     height: 500px ! important;
+}
+
+div#acumulado_de_ingresos div#proyeccion_nuevos_ingresos {
+     float: left;
+     margin-right: 13px;
+     width: 1015px;
+}
+
+div#acumulado_de_ingresos div#proyeccion_backlog{
+     float: left;
+     margin-right: 13px;
+     width: 501px;
+}
+
+div#acumulado_de_ingresos div#backlog_total, div#acumulado_de_ingresos div#backlog_no_enersis, div#acumulado_de_ingresos div#backlog_total_siguiente, div#acumulado_de_ingresos div#backlog_total_no_enersis_siguiente {
+     height: 200px;
+     float: left;
+}
+
+div#acumulado_de_ingresos div#backlog_total {
+     height: 200px;
+     float: left;
+     margin-right: 13px;
+}
+
+div#ingresos_por_segmento_total div.ingresos_bu, div#ingresos_por_segmento_detalle div.ingresos_bu  {
+     float: left;
+     height: 210px;
+     margin-right: 13px;
+     width: 345px;
+}
+
+div#ingresos_por_segmento_total {
+     height: 215px ! important;
+}
+
+
+div#ingresos_por_segmento_detalle {
+     height: 2490px ! important;
+}
+
+div#ingresos_por_tipo_de_servicio_especializado {
+     float: left;
+     height: 200px;
+     margin-right: 13px;
+     width: 350px;
+}
+
+div#ingresos_por_tipo_de_servicio_terreno {
+     float: left;
+     height: 200px;
+     margin-right: 13px;
+     width: 350px;
+}
+
+div#ingresos_por_tipo_de_servicio_distribucion {
+     float: left;
+     height: 200px;
+     width: 300px;
+}
+
+div#ingresos_por_tipo_de_servicio {
+     height: 210px ! important;
+}
+
+div#ingresos_por_market_manager {
+     height: 640px ! important;
+}
+
+div#ingresos_por_market_manager_nuevas_oportunidades {
+     height: 200px;
+     margin-right: 13px;
+     width: 1024px;
+}
+
+div#ingresos_por_market_manager_backlog {
+     height: 200px;
+     margin-right: 13px;
+     width: 1024px;
+}
+
+div#selectividad {
+     height: 270px ! important;
+}
+
+div#ingresos_por_market_manager_contratos_marco {
+     height: 200px;
+     width: 1024px;
+}
+
+div#selectividad_etapas {
+     float: left;
+     height: 200px;
+     margin-right: 13px;
+     width: 770px;
+}
+
+div#selectividad_causas_perdidas {
+     float: left;
+     height: 200px;
+     width: 230px;
+}
+
+table.lista th.vertical {
+     font-size: 11px;
+     width: 20px;
+}
+
+table.lista td.porcentaje {
+     width: 20px;
+}
+
+div#hitrate {
+     height: 1180px ! important;
+}
+
+div#hitrate div#esfuerzo_status {
+     height: 160px;
+     margin-right: 23px;
+     width: 1024px;
+}
+
+div#hitrate div#esfuerzo_cantidad {
+     float: left;
+     height: 160px;
+     margin-right: 13px;
+   
+}
+
+div#hitrate div#esfuerzo_precio {
+     float: left;
+     height: 160px;
+     margin-right: 13px;
+    
+}
+
+div#hitrate div#hitrate_cantidad {
+     float: left;
+     height: 160px;
+     margin-right: 13px;
+   
+}
+
+div#hitrate div#hitrate_precio {
+     float: left;
+     height: 160px;
+
+}
+
+div#hitrate div#top_prospeccion, div#hitrate div#top_en_espera {
+     width: 1024px;
+}
+
+table.panel_oportunidades tr.tupla td {
+     height: 45px;
+}
+
+table.panel_oportunidades tr.tupla td p {
+     font-size: 12px;
+     height: 45px;
+     margin: 0px;
+     overflow: hidden;
+     padding: 0px;
+}
+
+table.panel_oportunidades tr.tupla td p:after {
+     content: " ...";
+}
+
+#visitas img, #productividad img, #discovery img{
+  width: 1024px;
+}
+
+#imprimir {
+  text-align: right;
+  background: url("../images/document-print.png") no-repeat 3px;
+  display: block;
+  width: 70px;
+  padding-top:3px;
+  padding-bottom:3px;
+  padding-left:10px;
+}
+
+.ui-accordion-content {
+  background-color: #fff !important;
+}
+
+div#lost_in_progress {
+  height: 210px !important;
+}

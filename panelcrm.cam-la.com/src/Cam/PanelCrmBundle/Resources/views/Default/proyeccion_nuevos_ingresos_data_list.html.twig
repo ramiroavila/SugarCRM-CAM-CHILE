@@ -1,0 +1,25 @@
+<table class="lista">
+  <tr>
+    <th colspan="7">{{ title }}</th>
+  </tr>
+  <tr>
+    <th>PERIODO</th>
+    <th>OPORTUNIDAD</th>
+    <th>ADJUDICACION</th>
+    <th>INICIO</th>
+    <th>FIN</th>
+    <th>MONTO</th>
+    <th>INGRESO MES FACT.</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla">
+    <td>{{ data.MES }}-{{ data.ANNO }} </td>
+    <td>{{ data.OPORTUNIDAD }}</td>
+    <td>{{ data.ADJUDICACION | date("d-m-Y") }}</td>
+    <td>{{ data.INICIO | date("d-m-Y") }}</td>
+    <td>{{ data.FIN | date("d-m-Y") }}</td>
+    <td>${{ data.MONTO }}</td>
+    <td>${{ data.SUMA | number_format(2,'.',',') }}</td>
+  </tr>
+  {% endfor %}
+</table>

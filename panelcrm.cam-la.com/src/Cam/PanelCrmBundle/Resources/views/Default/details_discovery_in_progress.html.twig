@@ -1,0 +1,39 @@
+<tr>
+<td colspan="5">
+  <!-- GRAFICO -->
+  <div style="width: 99%">
+    <div style="float: left; width: 49%" id="panel_grafico_discovery_{{-assigned_user_id-}}"></div>
+    <div style="float: left; width:49%" id="panel_grafico_discovery_metas_{{-assigned_user_id-}}"></div>
+    <div class="clear"></div>
+  </div>
+  <script type="text/javascript">
+
+    $.ajax({
+      url: Routing.generate('panel_detalle_discovery_in_progress_graph', { 'anno': {{ anno }}, 'assigned_user_id': '{{-assigned_user_id-}}', 'width': $('#panel_grafico_discovery_{{-assigned_user_id-}}').width() }),       
+      cache: false,        
+      success: function (data) {
+        //OK
+        $('#panel_grafico_discovery_{{-assigned_user_id-}}').html(data);
+      },
+      error: function(a,b,c) {
+      
+      },       
+    }); 
+
+    $.ajax({
+      url: Routing.generate('panel_detalle_discovery_metas_in_progress_graph', { 'anno': {{ anno }}, 'assigned_user_id': '{{-assigned_user_id-}}', 'width': $('#panel_grafico_discovery_metas_{{-assigned_user_id-}}').width() }),       
+      cache: false,        
+      success: function (data) {
+        //OK
+        $('#panel_grafico_discovery_metas_{{-assigned_user_id-}}').html(data);
+      },
+      error: function(a,b,c) {
+      
+      },       
+    }); 
+
+  </script>
+  <!-- GRAFICO -->
+</td>
+</tr>  
+

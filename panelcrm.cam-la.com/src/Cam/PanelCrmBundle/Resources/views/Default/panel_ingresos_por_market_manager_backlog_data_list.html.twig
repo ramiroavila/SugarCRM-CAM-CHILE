@@ -1,0 +1,27 @@
+<table class="lista">
+  <tr>
+    <th colspan="7">{{ title }}</th>
+  </tr>
+  <tr>
+    <th>OPORTUNIDAD</th>
+    <th>ADJUDICACION</th>
+    <th>INICIO</th>
+    <th>FIN</th>
+    <th>AGENTE</th>
+    <th>TOTAL</th>
+    <th>BACKLOG</th>
+    <th>META BACKLOG</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla">
+    <td>{{ data.OPORTUNIDAD }}</td>
+    <td>{{ data.ADJUDICACION | date("d-m-Y") }}</td>
+    <td>{{ data.INICIO | date("d-m-Y") }}</td>
+    <td>{{ data.FIN | date("d-m-Y") }}</td>
+    <td>{{ data.USUARIO }}</td>
+    <td>${{ data.TOTAL | number_format(2,'.',',') }}</td>
+    <td>${{ data.SUMA | number_format(2,'.',',') }}</td>
+    <td>${{ data.META | number_format(2,'.',',') }}</td>
+  </tr>
+  {% endfor %}
+</table>

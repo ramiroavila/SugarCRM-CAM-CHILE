@@ -1,0 +1,66 @@
+<table class="lista" style="width: 200px;">
+  <tr>
+    <th colspan="4">Principales causas<br/> por las que se perdió</th> 
+  </tr>
+  <tr>
+    <th>Causa</th>
+    <th># ({{ hits }})</th>
+    <th>MU$D</th>
+    <th>%</th>
+  </tr>
+  <tr>
+    <td>Precio</td>
+    <td>{{ perdidas.PRECIO.HITS }}</td>
+    <td>{{ perdidas.PRECIO.MONTO | number_format(0,'.',',') }}</td>
+    <td>{% if (hits > 0) and (perdidas.PRECIO.HITS > 0) %}
+        {{ ((perdidas.PRECIO.MONTO / total) * 100) | number_format(0,'.',',') }}%
+        {% else %}
+        0%
+        {% endif %}
+    </td>
+  </tr> 
+  <tr>
+    <td>Retraso</td>
+    <td>{{ perdidas.RETRASO.HITS }}</td>
+    <td>{{ perdidas.RETRASO.MONTO | number_format(0,'.',',') }}</td>
+    <td>{% if (hits > 0) and (perdidas.RETRASO.HITS > 0) %}
+        {{ ((perdidas.RETRASO.MONTO / total) * 100) |  number_format(0,'.',',') }}%
+        {% else %}
+        0%
+        {% endif %}
+    </td>
+  </tr> 
+  <tr>
+    <td>Tiempo de ejecución</td>
+    <td>{{ perdidas.TIEMPO_DE_EJECUCION.HITS }}</td>
+    <td>{{ perdidas.TIEMPO_DE_EJECUCION.MONTO | number_format(0,'.',',')}}</td>
+    <td>{% if (hits > 0) and (perdidas.TIEMPO_DE_EJECUCION.HITS > 0) %}
+        {{ ((perdidas.TIEMPO_DE_EJECUCION.MONTO / total) * 100) | number_format(0,'.',',') }}%
+        {% else %}
+        0%
+        {% endif %}
+    </td>
+  </tr> 
+  <tr>
+    <td>Calificación técnica</td>
+    <td>{{ perdidas.CALIFICACION_TECNICA.HITS }}</td>
+    <td>{{ perdidas.CALIFICACION_TECNICA.MONTO | number_format(0,'.',',')}}</td>
+    <td>{% if (hits > 0) and (perdidas.CALIFICACION_TECNICA.HITS > 0) %}
+        {{ ((perdidas.CALIFICACION_TECNICA.MONTO / total) * 100) | number_format(0,'.',',') }}%
+        {% else %}
+        0%
+        {% endif %}
+    </td>
+  </tr> 
+  <tr>
+    <td>Otros</td>
+    <td>{{ perdidas.OTROS.HITS }}</td>
+    <td>{{ perdidas.OTROS.MONTO | number_format(0,'.',',')}}</td>
+    <td>{% if (hits > 0) and (perdidas.OTROS.HITS > 0) %}
+        {{ ((perdidas.OTROS.MONTO / total) * 100) | number_format(0,'.',',') }}%
+        {% else %}
+        0%
+        {% endif %}
+    </td>
+  </tr> 
+</table>

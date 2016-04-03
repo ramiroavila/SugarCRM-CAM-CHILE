@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Panel CRM - CAM {% endblock %}</title>
+          {% block stylesheets %}{% endblock %}
+          {% block js %}{% endblock %}
+          <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+          <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block container %}{% endblock %}
+    </body>
+    <script type="text/javascript">
+      {% block javascripts %}{% endblock %}
+    </script>
+</html>

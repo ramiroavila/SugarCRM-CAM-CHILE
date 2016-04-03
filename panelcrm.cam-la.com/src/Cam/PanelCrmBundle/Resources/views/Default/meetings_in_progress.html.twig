@@ -1,0 +1,42 @@
+<table class="lista panel_oportunidades" style="width:100%;">
+  <!-- <tr>
+    <th colspan="6">{{ title }}</th>
+  </tr> -->
+  <tr>
+    <th> CLIENTE </th>
+    <th> # VISITAS </th>
+    <th> # VISITAS POR OPORTUNIDADES </th>
+    <th> TOTAL&nbsp;{{-anno-}}</th>
+    <th> OPCIONES</th>
+  </tr>
+  {% for data in results %}
+  <tr class="tupla" id="detalle_meetings_{{-data.account_id-}}">
+    <td> {{ data.account }} </td>
+    <td> {{ data.meetings }} </td>
+    <td> {{ data.meetings_opportunities }} </td>
+    <td> {{ data.meetings + data.meetings_opportunities }}</td>
+    <td><a href="javascript:void(0)" id="ver_detalle_meetings_{{-data.account_id-}}">Ver detalle</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  {% for data in results %} 
+    $('#ver_detalle_meetings_{{-data.account_id-}}').bind('click', function (e) {
+
+       $.ajax({
+        url: Routing.generate('panel_detalle_meetings_por_agente', { 'anno': {{ anno }}, 'account_id': '{{-data.account_id-}}' }),       
+        cache: false,        
+        success: function (data) {
+          //OK
+          $(data).insertAfter("#detalle_meetings_{{-data.account_id-}}");    
+        },
+        error: function(a,b,c) {
+      
+        },       
+      }); 
+ 
+
+    });   
+  {% endfor %}
+</script>

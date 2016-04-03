@@ -1,0 +1,11 @@
+panel_crm:
+    resource: "@PanelCrmBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+_welcome:
+    path:      /
+    defaults:  { _controller: PanelCrmBundle:Default:index } 
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

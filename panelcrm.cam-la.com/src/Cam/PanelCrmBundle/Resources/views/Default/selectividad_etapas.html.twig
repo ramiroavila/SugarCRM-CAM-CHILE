@@ -1,0 +1,77 @@
+<table class="lista" style="width: 750px;">
+  <tr>
+    <th rowspan="8" class="vertical">T<br/>O<br/>T<br/>A<br/>L</th>
+    <td colspan="2" rowspan="2"></td>
+    <td rowspan="8" class="vertical"></td>
+    <th rowspan="8" class="vertical">S<br/>E<br/>L<br/>E<br/>C<br/>T<br/>I<br/>V<br/>I<br/>D<br/>A<br/>D</th>
+    <td colspan="2" rowspan="4"></td>
+    <td rowspan="8" class="vertical"></td>
+    <th rowspan="8" class="vertical">E<br/>S<br/>T<br/>U<br/>D<br/>I<br/>O</th>
+    <td colspan="2" rowspan="2"></td>
+    <td rowspan="8" class="vertical"></td>
+    <th rowspan="8" class="vertical">E<br/>N<br/>T<br/>R<br/>E<br/>G<br/>A<br/>D<br/>O<br/>S</th>
+    <th colspan="2">EN ESPERA</th>
+    <td rowspan="8" class="vertical"></td>
+    <th rowspan="8" class="vertical">P<br/>E<br/>R<br/>D<br/>I<br/>D<br/>O<br/>S</th>
+  </tr>
+  <tr>
+    <td>${{ data.APROBADO.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.APROBADO.SUMA / (data.APROBADO.SUMA + data.DESIERTA.SUMA + data.ADJUDICADA.SUMA + data.PERDIDAS.SUMA)) | number_format(3) }}%</td>
+  </tr>
+  <tr>
+    <th colspan="2">PROSPECCION</th>
+    <th colspan="2">ANULADOS</th>
+    <th colspan="2">DESIERTOS</th>
+  </tr>
+  <tr>
+    <td>${{ ( data.PROSPECCION_CONTINGENTE.SUMA + data.PROSPECCION_GENERAL.SUMA ) | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * ( (data.PROSPECCION_CONTINGENTE.SUMA + data.PROSPECCION_GENERAL.SUMA ) / (data.PASA_A_SELECTIVIDAD.SUMA + data.DESCARTADA.SUMA + data.PROSPECCION_CONTINGENTE.SUMA + data.PROSPECCION_GENERAL.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.ANULADA.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.ANULADA.SUMA / (data.ANULADA.SUMA + data.EN_ESTUDIO.SUMA + data.ENTREGADAS.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.DESIERTA.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.DESIERTA.SUMA / (data.APROBADO.SUMA + data.DESIERTA.SUMA + data.ADJUDICADA.SUMA + data.PERDIDAS.SUMA)) | number_format(3) }}%</td>
+  </tr>
+  <tr>
+    <th colspan="2">DESCARTADOS</th>
+    <th colspan="2">RECHAZADAS</th>
+    <th colspan="2">EN ESTUDIO</th>
+    <th colspan="2">ADJUDICADOS</th>
+  </tr>
+  <tr>
+    <td>${{ data.DESCARTADA.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.DESCARTADA.SUMA / (data.PASA_A_SELECTIVIDAD.SUMA + data.DESCARTADA.SUMA + data.PROSPECCION_CONTINGENTE.SUMA + data.PROSPECCION_GENERAL.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.RECHAZADA.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.RECHAZADA.SUMA / (data.RECHAZADA.SUMA + data.PASA_A_ESTUDIO.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.EN_ESTUDIO.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.EN_ESTUDIO.SUMA / (data.ANULADA.SUMA + data.EN_ESTUDIO.SUMA + data.ENTREGADAS.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.ADJUDICADA.SUMA | number_format(0,'.',',')}}</td>
+    <td>{{ 100 * (data.ADJUDICADA.SUMA / (data.APROBADO.SUMA + data.DESIERTA.SUMA + data.ADJUDICADA.SUMA + data.PERDIDAS.SUMA)) | number_format(3) }}%</td>
+  </tr>
+  <tr>
+    <th colspan="2">PASA A SELECTIVIDAD</th>
+    <th colspan="2">PASA A ESTUDIO</th>
+    <th colspan="2">ENTREGADOS</th>
+    <th colspan="2">PERDIDOS</th>
+  </tr>
+  <tr>
+    <td>${{ (data.RECHAZADA.SUMA + data.PASA_A_ESTUDIO.SUMA ) | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.PASA_A_SELECTIVIDAD.SUMA / (data.PASA_A_SELECTIVIDAD.SUMA + data.DESCARTADA.SUMA + data.PROSPECCION_CONTINGENTE.SUMA + data.PROSPECCION_GENERAL.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.PASA_A_ESTUDIO.SUMA | number_format(0,'.',',')}}</td>
+    <td>{{ 100 * (data.PASA_A_ESTUDIO.SUMA / (data.RECHAZADA.SUMA + data.PASA_A_ESTUDIO.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.ENTREGADAS.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.ENTREGADAS.SUMA / (data.ANULADA.SUMA + data.EN_ESTUDIO.SUMA + data.ENTREGADAS.SUMA )) | number_format(3) }}%</td>
+    <td>${{ data.PERDIDAS.SUMA | number_format(0,'.',',') }}</td>
+    <td>{{ 100 * (data.PERDIDAS.SUMA / (data.APROBADO.SUMA + data.DESIERTA.SUMA + data.ADJUDICADA.SUMA + data.PERDIDAS.SUMA)) | number_format(3) }}%</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+    <td colspan="3" style="text-align: right;">&raquo;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td></td>
+    <td colspan="3" style="text-align: right;">&raquo;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td></td>
+    <td colspan="3" style="text-align: right;">&raquo;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td></td>
+    <td colspan="3" style="text-align: right;">&raquo;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;&nbsp;* Valores $ en MU$D.</p>

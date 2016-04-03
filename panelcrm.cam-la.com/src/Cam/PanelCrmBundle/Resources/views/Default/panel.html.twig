@@ -1,0 +1,437 @@
+{% extends 'PanelCrmBundle::layout.html.twig' %}
+{% block js %}
+  {{ parent() }} 
+  <script type="text/javascript">
+  OFC = {};
+  OFC.jquery = {
+    name: "jQuery",
+    version: function(src) { return $('#'+ src)[0].get_version() },
+    rasterize: function (src, dst) { if ($('#'+ dst).length == 0) { alert("#" + dst + " no encontrado."); } else { $('#'+ dst).replaceWith(OFC.jquery.image(src)) } },
+    image: function(src) { return "<img src='data:image/png;base64," + $('#'+src)[0].get_img_binary() + "' />"},
+  }    
+  </script>
+{% endblock %}
+{% block content %}
+<h1>Panel de control comercial - Periodo {{ mes }}-{{ anno }} </h1>
+<a id="imprimir" class="print" href="javascript:void(0);">Imprimir</a>
+<div class="clear"></div>
+<div id="accordion">
+  <h4>1 ACUMULADO DE INGRESOS</h4>
+  <div id="acumulado_de_ingresos">
+    <div id="proyeccion_nuevos_ingresos"></div>
+    <div class="clear"></div>
+    <br/>
+    <div id="proyeccion_backlog"></div>
+    <div id="ingresos_total_anno"></div>
+    <div class="clear"></div>
+  </div>
+  <h4>2 INGRESOS POR BU / TOTAL</h4>
+  <div id="ingresos_por_segmento_total">
+       <div class="ingresos_bu" id="ingresos_total_bu"></div>
+       <div class="ingresos_bu" id="ingresos_bu"></div>
+       <div class="clear"></div>
+  </div>
+
+  <h4>3 INGRESOS POR BU / DETALLE</h4>
+  <div id="ingresos_por_segmento_detalle">
+       {% for bu in bus %}
+        <div class="ingresos_bu" id="ingresos_total_{{-bu.bu_c-}}"></div>
+        <div class="ingresos_bu" id="ingresos_bu_{{-bu.bu_c-}}"></div>
+        <div class="clear"></div>
+       {% endfor %}
+  </div>
+
+  <h4>4 INGRESOS POR MARKET MANAGER</h4>
+  <div id="ingresos_por_market_manager">
+    <div id="ingresos_por_market_manager_nuevas_oportunidades"></div>
+    <br/>
+    <div id="ingresos_por_market_manager_backlog"></div>
+    <br/>
+    <div id="ingresos_por_market_manager_contratos_marco"></div>
+  </div>
+
+  <h4>5 GESTIÓN DEL ÁREA COMERCIAL</h4>
+  <div>
+    <div id="visitas"></div>
+    <div id="discovery"></div>
+    <div class="clear"></div>
+  </div>
+
+  <h4>6 SELECTIVIDAD &nbsp;{{-anno-}}</h4>
+  <div id="selectividad">
+    <div id="selectividad_etapas"></div>
+    <div id="selectividad_causas_perdidas"></div>
+    <div class="clear"></div>
+  </div>
+
+  <h4>7 HIT RATE</h4>
+  <div id="hitrate">
+    <div id="esfuerzo_status"></div>
+    <div class="clear"></div>
+    <div id="esfuerzo_cantidad"></div>
+    <div id="esfuerzo_precio"></div>
+    <div id="hitrate_cantidad"></div>
+    <div id="hitrate_precio"></div>
+    <div class="clear"></div>
+    <div id="top_prospeccion"></div>
+    <div id="top_en_espera"></div>
+  </div>
+
+  <h4>8 PRODUCTIVIDAD</h4>
+  <div id="productividad"></div>
+
+  <h4>9 WORK IN PROGRESS</h4>
+  <div id="work_in_progress"></div>
+
+  <h4>10 OPORTUNIDADES PERDIDAS/RAZONES</h4>
+  <div id="lost_in_progress"></div>
+
+</div>
+
+{% endblock %}
+
+{% block breadcrumb %} 
+ <a href="{{ path('panel_crm_homepage')}}">Inicio</a>
+ &raquo; Panel de control
+{% endblock %}
+
+{% block javascripts %}
+
+  {{ parent() }}   
+
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+ 
+  $.ajax({
+        url: Routing.generate('panel_proyeccion_nuevos_ingresos_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),       
+        cache: false,        
+        success: function (data) {
+          //OK
+          $('#proyeccion_nuevos_ingresos').html(data);
+          $('#proyeccion_nuevos_ingresos').append('<a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_proyeccion_nuevos_ingresos_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} }) + '">Ver detalle Ingresos</a> | <a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_proyeccion_nuevos_ingresos_proyeccion_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} }) + '">Ver detalle Proyección</a>');      
+          $(".fancybox").fancybox();
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+    $.ajax({
+        url: Routing.generate('panel_proyeccion_backlog_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),       
+        cache: false,        
+        success: function (data) {
+          //OK
+          $('#proyeccion_backlog').html(data);
+          $('#proyeccion_backlog').append('<a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_proyeccion_ingresos_backlog_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} }) + '">Ver detalle Ingresos</a>');      
+          //| <a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_proyeccion_backlog_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} }) + '">Ver detalle Proyección</a>
+          $(".fancybox").fancybox();
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });     
+
+    $.ajax({
+        url: Routing.generate('panel_ingresos_total_anno_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),       
+        cache: false,        
+        success: function (data) {
+          //OK
+          $('#ingresos_total_anno').html(data);
+          $(".fancybox").fancybox();
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });             
+
+  $.ajax({
+        url: Routing.generate('panel_ingresos_total_graph', { 'anno': {{ anno }}, 'mes': {{ mes }}, 'key': 'BU', 'title': 'TOTAL BU' }),     
+        success: function (data) {
+          //OK
+          $('#ingresos_total_bu').html(data);
+          $('#ingresos_total_bu').append('<a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_ingresos_total_bu_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} , 'key': 'BU' }) + '">Ver detalle</a>');      
+          $(".fancybox").fancybox();
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_ingresos_distribucion_bu_graph', { 'anno': {{ anno }}, 'mes': {{ mes }}, 'key': 'BU', 'title': 'DISTRIBUCION BU  {{ anno }}' }),     
+        success: function (data) {
+          //OK
+          $('#ingresos_bu').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });      
+
+  {% for bu in bus %}
+    $.ajax({
+        url: Routing.generate('panel_ingresos_total_graph', { 'anno': {{ anno }}, 'mes': {{ mes }}, 'key': '{{-bu.bu_c-}}', 'title': 'TOTAL {{bu.bu_c}}' }),     
+        success: function (data) {
+          //OK
+          $('#ingresos_total_{{-bu.bu_c-}}').html(data);
+          $('#ingresos_total_{{-bu.bu_c-}}').append('<a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_ingresos_total_bu_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} , 'key': '{{-bu.bu_c-}}' }) + '">Ver detalle</a>');      
+          $(".fancybox").fancybox();          
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+    $.ajax({
+        url: Routing.generate('panel_ingresos_distribucion_bu_graph', { 'anno': {{ anno }}, 'mes': {{ mes }}, 'key': '{{-bu.bu_c-}}', 'title': 'DISTRIBUCION POR ETAPAS {{bu.bu_c}} {{ anno }}' }),     
+        success: function (data) {
+          //OK
+          $('#ingresos_bu_{{-bu.bu_c-}}').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });        
+  {% endfor %}      
+
+  $.ajax({
+        url: Routing.generate('panel_ingresos_graph', { 'anno': {{ anno }}, 'mes': {{ mes }}, 'key': 'UE', 'title': 'Ingresos por UE' }),     
+        success: function (data) {
+          //OK
+          $('#ingresos_ue').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+
+  $.ajax({
+        url: Routing.generate('panel_ingresos_por_market_manager_nuevas_oportunidades_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }), 
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#ingresos_por_market_manager_nuevas_oportunidades').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_ingresos_por_market_manager_backlog_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),    
+        cache: false,       
+        success: function (data) {
+          //OK
+          $('#ingresos_por_market_manager_backlog').html(data);
+          $('#ingresos_por_market_manager_backlog').append('<a class="fancybox fancybox.ajax" href="' + Routing.generate('panel_ingresos_por_market_manager_backlog_data_list', { 'anno': {{ anno }}, 'mes': {{ mes }} }) + '">Ver detalle backlog</a>');      
+          $(".fancybox").fancybox(); 
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_ingresos_por_market_manager_contratos_marco_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),        
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#ingresos_por_market_manager_contratos_marco').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_visitas_clientes_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),    
+        cache: false,          
+        success: function (data) {
+          //OK
+          $('#visitas').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_discovery_clientes_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),    
+        cache: false,          
+        success: function (data) {
+          //OK
+          $('#discovery').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });      
+
+  $.ajax({
+        url: Routing.generate('panel_imagen_graph', { 'anno': {{ anno }}, 'mes': {{ mes }}, 'key': '8-PRODUCTIVIDAD' }),  
+        cache: false,            
+        success: function (data) {
+          //OK
+          $('#productividad').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_selectividad_etapas_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),       
+        cache: false,        
+        success: function (data) {
+          //OK
+          $('#selectividad_etapas').html(data);
+        },
+        error: function(a,b,c) {
+      
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_selectividad_causas_perdidas_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }), 
+        cache: false,        
+        success: function (data) {
+          //OK
+          $('#selectividad_causas_perdidas').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_esfuerzo_cantidad_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#esfuerzo_cantidad').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_esfuerzo_precio_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),     
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#esfuerzo_precio').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_esfuerzo_status_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),   
+        cache: false,        
+        success: function (data) {
+          //OK
+          $('#esfuerzo_status').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_hitrate_cantidad_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }), 
+        cache: false,          
+        success: function (data) {
+          //OK
+          $('#hitrate_cantidad').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+  $.ajax({
+        url: Routing.generate('panel_hitrate_precio_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),         
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#hitrate_precio').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+    $.ajax({
+        url: Routing.generate('panel_top_prospeccion_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),        
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#top_prospeccion').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+    $.ajax({
+        url: Routing.generate('panel_top_en_espera_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),         
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#top_en_espera').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });
+
+    $.ajax({
+        url: Routing.generate('panel_work_in_progress_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),         
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#work_in_progress').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      }); 
+
+    $.ajax({
+        url: Routing.generate('panel_lost_in_progress_graph', { 'anno': {{ anno }}, 'mes': {{ mes }} }),         
+        cache: false,      
+        success: function (data) {
+          //OK
+          $('#lost_in_progress').html(data);
+        },
+        error: function(a,b,c) {
+          
+        },       
+      });             
+
+  $("#imprimir").bind('click', function(e) {
+    $("#imprimir").hide();
+    $('#accordion .ui-accordion-content').show();
+    setTimeout(function(){ 
+    OFC.jquery.rasterize ('panel_proyeccion_nuevos_ingresos_graph', 'panel_proyeccion_nuevos_ingresos_graph');
+    OFC.jquery.rasterize ('panel_ingresos_por_market_manager_nuevas_oportunidades_graph','panel_ingresos_por_market_manager_nuevas_oportunidades_graph');
+    OFC.jquery.rasterize ('panel_ingresos_total_graph_BU','panel_ingresos_total_graph_BU');
+    {% for bu in bus %}
+    OFC.jquery.rasterize ('panel_ingresos_total_graph_{{-bu.bu_c-}}','panel_ingresos_total_graph_{{-bu.bu_c-}}');
+    {% endfor %}
+    OFC.jquery.rasterize ('panel_ingresos_por_market_manager_backlog_graph','panel_ingresos_por_market_manager_backlog_graph');
+    OFC.jquery.rasterize ('panel_ingresos_por_market_manager_contratos_marco_graph','panel_ingresos_por_market_manager_contratos_marco_graph');
+    OFC.jquery.rasterize ('panel_esfuerzo_cantidad_graph','panel_esfuerzo_cantidad_graph');
+    OFC.jquery.rasterize ('panel_esfuerzo_precio_graph','panel_esfuerzo_precio_graph');
+    OFC.jquery.rasterize ('panel_hitrate_cantidad_graph','panel_hitrate_cantidad_graph');
+    OFC.jquery.rasterize ('panel_hitrate_precio_graph','panel_hitrate_precio_graph'); 
+    }, 15000); 
+    $("#imprimir").show();
+    setTimeout(function(){ window.print(); }, 15000);    
+  });
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'PanelCrmBundle::layout.html.twig' %}
+
+{% block content %}
+<h1>Reportes</h1>
+
+  <ul>
+    <li><a class="xls" href="http://panelcrm.cam-la.com/CHILE-BACKLOG.xls">Chile BackLog</a></li>
+    <li><a class="xls" href="http://panelcrm.cam-la.com/CHILE-xQT-BACKLOG.xls">Chile BackLog por trimestres</a></li>
+    <li><a class="xls" href="http://panelcrm.cam-la.com/CHILE-WORK-IN-PROGRESS.xls">Chile Work in Progress</a></li>
+  </ul>
+
+<h1>Panel de mando</h1>
+  <form>
+    <table>
+      <tbody>
+        <tr>
+          <th><label>Mes</label></th>  
+          <td>
+            <select id="mes">
+              {% for key, value in meses %}
+              <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label>Año</label></th>  
+          <td>
+            <select id="anno">
+              {% for key, value in annos %}
+              <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td><input type="button" id="submit" value="Ver panel de control"/></td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+{% endblock %}
+
+
+{% block javascripts %}
+  {{ parent() }}  
+
+  $('#mes').val(new Date().getMonth() + 1);
+  $('#anno').val(new Date().getFullYear());
+
+  $('#submit').bind('click', function (e) { 
+    window.location.href = Routing.generate('panel_crm_layout', { anno: $('#anno').val(), mes: $('#mes').val() }, true);
+  });
+
+  
+  $('#homepage').addClass("selected");
+{% endblock %}

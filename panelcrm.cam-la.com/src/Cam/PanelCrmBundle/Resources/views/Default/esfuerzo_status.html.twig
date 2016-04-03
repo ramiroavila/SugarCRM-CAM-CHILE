@@ -1,0 +1,24 @@
+{% set cantidad = 0 %}
+{% set monto = 0 %}
+
+<table class="lista">
+  <tr>
+    <th>STATUS</th>
+    <th>CANTIDAD (Q)</th>
+    <th>MONTO (MU$D)</th>
+  </tr>
+  {% for data in results %}
+    {% set cantidad = cantidad + data.CANTIDAD %}
+    {% set monto = monto + data.MONTO %}
+  <tr>  
+    <td>{{ data.STATUS }} </td>
+    <td>{{ data.CANTIDAD }} </td>
+    <td>${{ data.MONTO  | number_format(0,'.',',') }} </td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td><b>TOTAL</b></td>
+    <td>{{ cantidad }}</td>
+    <td>${{ monto  | number_format(0,'.',',') }}</td>
+  </tr> 
+</table>

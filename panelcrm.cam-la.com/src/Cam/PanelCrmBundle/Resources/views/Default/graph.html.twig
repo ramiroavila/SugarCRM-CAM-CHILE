@@ -1,0 +1,8 @@
+{% extends 'PanelCrmBundle::open-flash-chart.html.twig' %}  
+
+{% block width %}{{ width }}{% endblock %}
+{% block height %}{{ height }}{% endblock %}
+{% block data %}{{ path(key, {'anno': anno, 'mes': mes}) }}{% endblock %}
+{% block div %}{{ div }}{% endblock %}
+{% block div_show %}{{ div }}{% endblock %}
+
