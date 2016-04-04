@@ -1,0 +1,292 @@
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-3">
+        <br/>
+        <h4 class="text-center">CAM.GPN.PG.01-F01</h4>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-center">Ficha de selectividad</h3>
+        <h4 class="text-center">- Servicios & Proyectos -</h4>
+      </div>
+      <div class="col-md-3">
+        <br/>
+        <div class="row">
+          <div class="col-md-6">Revisión</div>
+          <div class="col-md-6">3.3</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">Fecha</div>
+          <div class="col-md-6">{{ "now" | date('d/m/Y') }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+
+
+          <table class="table table-bordered">
+            <tr>
+              <th colspan="4">
+                <h4>Información general</h4>
+              </th>
+            </tr>
+            <tr>
+              <th style="width: 20%;">Nombre Oportunidad</th>
+              <td>{{ entity.name }}</td>
+              <th style="width: 20%;">Responsable Comercial</th>
+              <td>{{ entity.assigned_user_name }}</td>
+            </tr>
+            <tr>
+              <th>Código</th>
+              <td>{{ entity.codigo_oportunidad_c }}</td>
+              <th>Fecha de invitación</th>
+              <td>{{ entity.fecha_de_invitacion_c }}</td>
+            </tr>
+            <tr>
+              <th>Cliente</th>
+              <td id="description">{{ entity.account_name }}</td>
+              <th>Fecha de presentación</th>
+              <td>{{ entity.fecha_de_presentacion_c }}</td>
+            </tr>
+            <tr>
+              <th>Contacto</th>
+              <td></td>
+              <th>Fecha de entrega</th>
+              <td>{{ entity.fecha_de_entrega_c }}</td>
+            </tr>
+            <tr>
+              <th>Tipo / Servicio</th>
+              <td id="resolution">{{ entity.servicio_c }}</td>
+              <th>Fecha de adjudicacion</th>
+              <td>{{ entity.date_closed }}</td>
+            </tr>
+            <tr>
+              <th>Unidad de negocio</th>
+              <td id="resolution">{{ entity.bu_c }}</td>
+              <th>Fecha de inicio ejecución</th>
+              <td>{{ entity.fecha_de_inicio_ejecucion_c }}</td>
+            </tr>
+            <tr>
+              <th>Segmento</th>
+              <td id="resolution">{{ entity.segmento_c }}</td>
+              <th>Tipo de moneda</th>
+              <td>{{ entity.currency_name }}</td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <th>Portafolio</th>
+              <td>{{ entity.portafolio_cam_c | trans }}</td>
+            </tr>
+            <tr>
+              <th>Descripción</th>
+              <td colspan="3">{{ entity.description }}<br/><br/></td>
+            </tr>
+          </table>
+
+          <table class="table table-bordered">
+            <tr>
+              <th>
+                <h4>Árbol de decisión</h4>
+              </th>
+              <th colspan="2">
+                <h4>Criterio</h4>
+              </th>
+              <th>
+                <h4>Resultado</h4>
+              </th>
+            </tr>
+            <tr>
+              <th rowspan="6">
+                <h3 class="text-center">Interés comercial</h3>
+              </th>
+              <th style="width: 25%;">Backlog total (M U$)</th>
+              <td style="width: 25%;"></td>
+              <th rowspan="4"></th>
+            </tr>
+            <tr>
+              <th>Márgen target</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Plazo (Meses)</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Riesgo financiamiento cliente</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th colspan="4">Comentarios y justificaciones de interés comercial</th>
+            </tr>
+            <tr>
+              <td colspan="4"><br/><br/></td>
+            </tr>
+
+            <tr>
+              <th rowspan="10">
+                <h3 class="text-center">Oportunidad de ganar</h3>
+              </th>
+              <th style="width: 25%;">Competitividad en precio</th>
+              <td style="width: 25%;"></td>
+              <th rowspan="8"></th>
+            </tr>
+            <tr>
+              <th>Competitividad técnica</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Fidelización área del cliente comercial</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Fidelización área del cliente técnica</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Fidelización área del cliente compras</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Tipo de invitación</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Propuesta de valor diferenciadora</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Cantidad competidores</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th colspan="4">Comentarios y justificaciones de oportunidad de ganar</th>
+            </tr>
+            <tr>
+              <td colspan="4"><br/><br/></td>
+            </tr>
+
+            <tr>
+              <th rowspan="5">
+                <h3 class="text-center">Capacidad empresa</h3>
+              </th>
+              <th style="width: 25%;">Experiencia con mandante</th>
+              <td style="width: 25%;"></td>
+              <th rowspan="3"></th>
+            </tr>
+            <tr>
+              <th>Experiencia con mandante</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Requerimientos caja M USD</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th colspan="4">Comentarios y justificaciones de capacidad empresa</th>
+            </tr>
+            <tr>
+              <td colspan="4"><br/><br/></td>
+            </tr>
+
+            <tr>
+              <th rowspan="4">
+                <h3 class="text-center">Capacidad presupuestal</h3>
+              </th>
+              <th style="width: 25%;">Experiencia presupuestal</th>
+              <td style="width: 25%;"></td>
+              <th rowspan="4"></th>
+            </tr>
+            <tr>
+              <th>Tiempo para desarrollo</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Documentación bases</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Documentación anexos (planos)</th>
+              <td></td>
+            </tr>
+
+            <tr>
+              <th>
+                <h3 class="text-center">Recomendación de la herramienta</h3>
+              </th>
+              <td colspan="2"><br/><br/></td>
+              <td></td>
+            </tr>
+            <tr>
+             <th rowspan="3">
+                <h3 class="text-center">Decisión comité</h3>
+             </th>
+             <td colspan="2"><br/><br/></td>
+             <td></td>
+           </tr>
+           <tr>
+             <th colspan="4">Estrategia para ganar/Consideraciones</th>
+           </tr>
+           <tr>
+             <td colspan="4"><br/><br/></td>
+           </tr>
+          </table>
+
+          <table class="table table-bordered">
+            <tr>
+              <th>
+                <h4>Responsables</h4>
+              </th>
+              <th>
+                <h4>Fecha</h4>
+              </th>
+              <th>
+                <h4>Hitos presupuestales</h4>
+              </th>
+              <th>
+                <h4>Fecha</h4>
+              </th>
+            </tr>
+            <tr>
+              <th style="width: 20%;">Líder propuesta</th>
+              <td></td>
+              <th style="width: 20%;">Responsable lanzamiento</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Experto de apoyo</th>
+              <td></td>
+              <th>Responsable ideas</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Fecha de inicio de propuesta</th>
+              <td></td>
+              <th>Responsable pre-cierre</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Fecha de extensión (si aplica)</th>
+              <td></td>
+              <th>Responsable cierre</th>
+              <td></td>
+            </tr>
+          </table>
+
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block menu %}
+{% endblock %}

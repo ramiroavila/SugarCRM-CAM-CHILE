@@ -1,13 +1,24 @@
 {% extends 'BcTicVictoriaBundle:Default:base.html.twig' %}
 
-{% set title = "Atencion Clientes CAM" %}
-{% set home = "Atención Clientes CAM" %}
+{% set title = "CRM CAM" %}
+{% set home = "CRM CAM" %}
 
 {% set copyright = "CRM CAM 2014" %}
-{% set version = "Versión 4 12/07/2014" %}
+{% set version = "Versión 5 03/04/2016" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="//necolas.github.io/normalize.css/3.0.1/normalize.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.10.4.min.css">
+{% endblock %}
+
 
 {% block javascript %}
   {{ parent() }}
+  <script src="/js/jquery-ui-1.10.4.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <script src="/js/bootstrap-maxlength.min.js"></script>
 {% endblock %}
 
@@ -15,7 +26,7 @@
             <ul class="nav navbar-nav">
               <li id="add"><a href="{{ path('default_index') }}">Ingreso de caso</a></li>
               <li id="index"><a href="{{ path('case_index') }}">Seguimiento de caso</a></li>
-            </ul>  
+            </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="hidden-xs"><img alt="logo" style="height:35px; margin-top:7px; margin-right: 13px;" src="{{ asset('images/logo.jpg') }}"/></li>
             </ul>
