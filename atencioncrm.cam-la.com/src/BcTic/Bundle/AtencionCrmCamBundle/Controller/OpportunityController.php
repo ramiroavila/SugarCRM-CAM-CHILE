@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 class OpportunityController extends Controller
 {
     /**
-     * @Route("/oportunidades/ver-ficha-de-selectividad/{id}" ,name="ficha-de-selectividad", )
+     * @Route("/oportunidades/ver-ficha-de-selectividad/{id}", name="ficha-de-selectividad" )
      * @Template()
      */
     public function showAction($id) {
