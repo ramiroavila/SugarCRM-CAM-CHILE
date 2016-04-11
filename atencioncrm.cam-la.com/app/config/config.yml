@@ -69,6 +69,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     encryption: "%mailer_encryption%"
-    spool:     
+    spool:
         type: file
         path: "%kernel.root_dir%/spool"

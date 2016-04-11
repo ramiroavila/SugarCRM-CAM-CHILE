@@ -107,26 +107,29 @@
                 <h3 class="text-center">Interés comercial</h3>
               </th>
               <th style="width: 25%;">Backlog total (M U$)</th>
-              <td style="width: 25%;"></td>
+              <td style="width: 25%;">{{ entity.backlog_total_c }}</td>
               <th rowspan="4"></th>
             </tr>
             <tr>
               <th>Márgen target</th>
-              <td></td>
+              <td>{{-entity.margen_esperado_c-}}%</td>
             </tr>
             <tr>
               <th>Plazo (Meses)</th>
-              <td></td>
+              <td>{{-entity.plazo_c-}}</td>
             </tr>
             <tr>
               <th>Riesgo financiamiento cliente</th>
-              <td></td>
+              <td>
+                {% set riesgo = 'riesgo_' ~ entity.riesgo_financiero_cliente_c %}
+                {{-riesgo|trans-}}
+              </td>
             </tr>
             <tr>
               <th colspan="4">Comentarios y justificaciones de interés comercial</th>
             </tr>
             <tr>
-              <td colspan="4"><br/><br/></td>
+              <td colspan="4">{{-entity.comentarios_interes_comercia_c-}}<br/><br/></td>
             </tr>
 
             <tr>
@@ -134,42 +137,57 @@
                 <h3 class="text-center">Oportunidad de ganar</h3>
               </th>
               <th style="width: 25%;">Competitividad en precio</th>
-              <td style="width: 25%;"></td>
+              <td style="width: 25%;">
+                {% set competividad = 'competividad_' ~ entity.competividad_en_precio_c %}
+                {{-competividad|trans-}}
+              </td>
               <th rowspan="8"></th>
             </tr>
             <tr>
               <th>Competitividad técnica</th>
-              <td></td>
+              <td>
+                {% set competividad = 'competividad_' ~ entity.competitividad_tecnica_c %}
+                {{-competividad|trans-}}
+              </td>
             </tr>
             <tr>
               <th>Fidelización área del cliente comercial</th>
-              <td></td>
+              <td>
+                {% set fidelizacion = 'fidelizacion_' ~ entity.fidelizacion_comercial_c %}
+                {{-fidelizacion|trans-}}
+              </td>
             </tr>
             <tr>
               <th>Fidelización área del cliente técnica</th>
-              <td></td>
+              <td>
+                {% set fidelizacion = 'fidelizacion_' ~ entity.fidelizacion_tecnica_c %}
+                {{-fidelizacion|trans-}}
+              </td>
             </tr>
             <tr>
               <th>Fidelización área del cliente compras</th>
-              <td></td>
+              <td>
+                {% set fidelizacion = 'fidelizacion_' ~ entity.fidelizacion_compras_c %}
+                {{-fidelizacion|trans-}}
+              </td>
             </tr>
             <tr>
               <th>Tipo de invitación</th>
-              <td></td>
+              <td>{{-entity.tipo_de_invitacion_c-}}</td>
             </tr>
             <tr>
               <th>Propuesta de valor diferenciadora</th>
-              <td></td>
+              <td>{{-entity.propuesta_de_valor_diferenci_c|trans-}}</td>
             </tr>
             <tr>
               <th>Cantidad competidores</th>
-              <td></td>
+              <td>{{-entity.cantidad_de_competidores_c|trans-}}</td>
             </tr>
             <tr>
               <th colspan="4">Comentarios y justificaciones de oportunidad de ganar</th>
             </tr>
             <tr>
-              <td colspan="4"><br/><br/></td>
+              <td colspan="4">{{-entity.comentarios_oportunidad_c-}}<br/><br/></td>
             </tr>
 
             <tr>
@@ -177,22 +195,22 @@
                 <h3 class="text-center">Capacidad empresa</h3>
               </th>
               <th style="width: 25%;">Experiencia con mandante</th>
-              <td style="width: 25%;"></td>
+              <td style="width: 25%;">{{-entity.experiencia_con_mandante_c | trans }}</td>
               <th rowspan="3"></th>
             </tr>
             <tr>
-              <th>Experiencia con mandante</th>
-              <td></td>
+              <th>Experiencia con entorno/estándares</th>
+              <td>{{-entity.experiencia_con_entorno_c | trans}}</td>
             </tr>
             <tr>
               <th>Requerimientos caja M USD</th>
-              <td></td>
+              <td>{% set caja = 'requerimientos_caja_' ~ entity.requerimiento_caja_c %}{{ caja | trans }}</td>
             </tr>
             <tr>
               <th colspan="4">Comentarios y justificaciones de capacidad empresa</th>
             </tr>
             <tr>
-              <td colspan="4"><br/><br/></td>
+              <td colspan="4">{{-entity.comentarios_capacidad_empres_c}}<br/><br/></td>
             </tr>
 
             <tr>
@@ -200,12 +218,12 @@
                 <h3 class="text-center">Capacidad presupuestal</h3>
               </th>
               <th style="width: 25%;">Experiencia presupuestal</th>
-              <td style="width: 25%;"></td>
+              <td style="width: 25%;">{{-entity.experiencia_presupuestal_c | trans}}</td>
               <th rowspan="4"></th>
             </tr>
             <tr>
               <th>Tiempo para desarrollo</th>
-              <td></td>
+              <td>{{-entity.tiempo_para_desarrollo_c | trans}}</td>
             </tr>
             <tr>
               <th>Documentación bases</th>
@@ -234,7 +252,7 @@
              <th colspan="4">Estrategia para ganar/Consideraciones</th>
            </tr>
            <tr>
-             <td colspan="4"><br/><br/></td>
+             <td colspan="4">{{-entity.estrategia_para_ganar_c-}}<br/><br/></td>
            </tr>
           </table>
 

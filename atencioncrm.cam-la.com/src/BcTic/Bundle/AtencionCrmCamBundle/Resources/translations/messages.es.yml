@@ -1,5 +1,31 @@
-Pending Input: ESPERANDO INFORMACIÓN SOLICITADA AL CONTACTO
+'Pending Input': 'ESPERANDO INFORMACIÓN SOLICITADA AL CONTACTO'
 New: INGRESADO
-Assigned: CASO ASIGNADO PARA SOLUCION
+Assigned: 'CASO ASIGNADO PARA SOLUCION'
 Closed: SOLUCIONADO
+riesgo_1: 'BAJO'
+riesgo_5: 'MEDIO'
+riesgo_10: 'ALTO'
 
+competividad_1: 'BAJO'
+competividad_5: 'MEDIO'
+competividad_10: 'ALTO'
+
+fidelizacion_1: 'BAJO'
+fidelizacion_5: 'MEDIO'
+fidelizacion_10: 'ALTO'
+
+requerimientos_caja_1: 'BAJO'
+requerimientos_caja_5: 'MEDIO'
+requerimientos_caja_10: 'ALTO'
+
+YES: 'Sí'
+NO: 'No'
+
+HOLGADO: 'Holgado'
+NORMAL: 'Normal'
+CORTO: 'Corto'
+
+'NINGUNO': 'Ninguno'
+'MENOR_A_4': 'Menor a 4'
+'ENTRE_4_Y_8': 'Entre 4 y 8'
+'MAYOR_A_8': 'Mayor a 8'
