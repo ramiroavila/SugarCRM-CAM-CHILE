@@ -258,42 +258,36 @@
 
           <table class="table table-bordered">
             <tr>
-              <th>
+              <th colspan="2">
                 <h4>Responsables</h4>
               </th>
-              <th>
-                <h4>Fecha</h4>
-              </th>
-              <th>
+              <th colspan="2">
                 <h4>Hitos presupuestales</h4>
-              </th>
-              <th>
-                <h4>Fecha</h4>
               </th>
             </tr>
             <tr>
               <th style="width: 20%;">Líder propuesta</th>
-              <td></td>
-              <th style="width: 20%;">Responsable lanzamiento</th>
-              <td></td>
+              <td>{{-entity.lider_propuesta_c-}}</td>
+              <th style="width: 20%;">Fecha de reunión de lanzamiento</th>
+              <td{{-entity.fecha_de_lanzamiento_c-}}></td>
             </tr>
             <tr>
               <th>Experto de apoyo</th>
-              <td></td>
-              <th>Responsable ideas</th>
-              <td></td>
+              <td>{{-entity.experto_de_apoyo_c-}}</td>
+              <th>Fecha de reunión de ideas</th>
+              <td>{{-entity.fecha_de_reunion_ideas_c-}}</td>
             </tr>
             <tr>
               <th>Fecha de inicio de propuesta</th>
-              <td></td>
-              <th>Responsable pre-cierre</th>
-              <td></td>
+              <td>{{-entity.fecha_inicio_de_propuesta_c-}}</td>
+              <th>Fecha de reunión de pre-cierre</th>
+              <td>{{-entity.fecha_de_reunion_pre_cierre_c-}}</td>
             </tr>
             <tr>
               <th>Fecha de extensión (si aplica)</th>
-              <td></td>
-              <th>Responsable cierre</th>
-              <td></td>
+              <td>{{-entity.fecha_de_extension_c-}}</td>
+              <th>Fecha de reunión de cierre</th>
+              <td>{{-entity.fecha_de_reunion_cierre_c-}}</td>
             </tr>
           </table>
 
