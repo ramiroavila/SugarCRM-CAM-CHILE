@@ -86,40 +86,22 @@
                     <text-property name="heading">NOMBRE</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">PROSPECCION GENERAL</property>
+                    <property name="columnName">DESDE_ESTADO</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">PROSPECCION GENERAL</text-property>
-                    <text-property name="heading">PROSPECCION GENERAL</text-property>
+                    <text-property name="displayName">DESDE_ESTADO</text-property>
+                    <text-property name="heading">DESDE_ESTADO</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">PROSPECCION CONTINGENTE</property>
+                    <property name="columnName">HASTA_ESTADO</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">PROSPECCION CONTINGENTE</text-property>
-                    <text-property name="heading">PROSPECCION CONTINGENTE</text-property>
+                    <text-property name="displayName">HASTA_ESTADO</text-property>
+                    <text-property name="heading">HASTA_ESTADO</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">EN_ESTUDIO</property>
+                    <property name="columnName">FECHA</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">EN_ESTUDIO</text-property>
-                    <text-property name="heading">EN_ESTUDIO</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">APROBADO</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">APROBADO</text-property>
-                    <text-property name="heading">APROBADO</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">ADJUDICACION</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">ADJUDICACION</text-property>
-                    <text-property name="heading">ADJUDICACION</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">PERDIDO</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">PERDIDO</text-property>
-                    <text-property name="heading">PERDIDO</text-property>
+                    <text-property name="displayName">FECHA</text-property>
+                    <text-property name="heading">FECHA</text-property>
                 </structure>
             </list-property>
             <list-property name="filter"/>
@@ -138,32 +120,17 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">PROSPECCION GENERAL</property>
+                        <property name="name">DESDE_ESTADO</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">PROSPECCION CONTINGENTE</property>
+                        <property name="name">HASTA_ESTADO</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
-                        <property name="name">EN_ESTUDIO</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">6</property>
-                        <property name="name">APROBADO</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">7</property>
-                        <property name="name">ADJUDICACION</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">8</property>
-                        <property name="name">PERDIDO</property>
+                        <property name="name">FECHA</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -186,48 +153,27 @@
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">PROSPECCION GENERAL</property>
-                    <property name="nativeName">PROSPECCION GENERAL</property>
+                    <property name="name">DESDE_ESTADO</property>
+                    <property name="nativeName">DESDE_ESTADO</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">PROSPECCION CONTINGENTE</property>
-                    <property name="nativeName">PROSPECCION CONTINGENTE</property>
+                    <property name="name">HASTA_ESTADO</property>
+                    <property name="nativeName">HASTA_ESTADO</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
-                    <property name="name">EN_ESTUDIO</property>
-                    <property name="nativeName">EN_ESTUDIO</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-                <structure>
-                    <property name="position">6</property>
-                    <property name="name">APROBADO</property>
-                    <property name="nativeName">APROBADO</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-                <structure>
-                    <property name="position">7</property>
-                    <property name="name">ADJUDICACION</property>
-                    <property name="nativeName">ADJUDICACION</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-                <structure>
-                    <property name="position">8</property>
-                    <property name="name">PERDIDO</property>
-                    <property name="nativeName">PERDIDO</property>
+                    <property name="name">FECHA</property>
+                    <property name="nativeName">FECHA</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities.name as NOMBRE, (SELECT MAX(DATE_FORMAT(a.date_created,'%d-%m-%Y')) FROM opportunities_audit a WHERE a.parent_id = opportunities.id AND a.field_name = 'sales_stage' AND a.after_value_string = 'PROSPECCION_GENERAL' LIMIT 1) as 'PROSPECCION GENERAL' , (SELECT MAX(DATE_FORMAT(b.date_created,'%d-%m-%Y')) FROM opportunities_audit b WHERE b.parent_id = opportunities.id AND b.field_name = 'sales_stage' AND b.after_value_string = 'PROSPECCION_CONTINGENTE' LIMIT 1) as 'PROSPECCION CONTINGENTE', (SELECT MAX(DATE_FORMAT(c.date_created,'%d-%m-%Y')) FROM opportunities_audit c WHERE c.parent_id = opportunities.id AND c.field_name = 'sales_stage' AND c.after_value_string = 'EN_ESTUDIO' LIMIT 1) as 'EN_ESTUDIO', (SELECT MAX(DATE_FORMAT(d.date_created,'%d-%m-%Y')) FROM opportunities_audit d WHERE d.parent_id = opportunities.id AND d.field_name = 'sales_stage' AND d.after_value_string = 'APROBADO' LIMIT 1) as 'APROBADO', (SELECT MAX(DATE_FORMAT(e.date_created,'%d-%m-%Y')) FROM opportunities_audit e WHERE e.parent_id = opportunities.id AND e.field_name = 'sales_stage' AND e.after_value_string = 'Closed Won' LIMIT 1) as 'ADJUDICACION', (SELECT MAX(DATE_FORMAT(f.date_created,'%d-%m-%Y')) FROM opportunities_audit f WHERE f.parent_id = opportunities.id AND f.field_name = 'sales_stage' AND f.after_value_string = 'Closed Lost' LIMIT 1) as 'PERDIDO' FROM opportunities INNER JOIN opportunities_cstm ON opportunities.id = opportunities_cstm.id_c WHERE opportunities.deleted = 0 ORDER BY opportunities_cstm.codigo_oportunidad_c ASC;]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities.name as NOMBRE, CASE opportunities_audit.before_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE  opportunities_audit.before_value_string END as DESDE_ESTADO, CASE opportunities_audit.after_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE opportunities_audit.after_value_string END as HASTA_ESTADO, DATE_FORMAT(opportunities_audit.date_created,'%d-%m-%Y') as FECHA FROM opportunities INNER JOIN opportunities_cstm  ON opportunities.id = opportunities_cstm.id_c INNER JOIN opportunities_audit ON opportunities_audit.parent_id = opportunities.id WHERE opportunities.deleted = 0 AND opportunities_audit.field_name = 'sales_stage' ORDER BY opportunities_cstm.codigo_oportunidad_c ASC, opportunities_audit.date_created ASC;]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -275,7 +221,7 @@
         </simple-master-page>
     </page-setup>
     <body>
-        <table id="139">
+        <table id="191">
             <property name="dataSet">CHILE-MAP-QUERY</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -291,148 +237,94 @@
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">PROSPECCION GENERAL</property>
-                    <text-property name="displayName">PROSPECCION GENERAL</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["PROSPECCION GENERAL"]</expression>
+                    <property name="name">DESDE_ESTADO</property>
+                    <text-property name="displayName">DESDE_ESTADO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DESDE_ESTADO"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">PROSPECCION CONTINGENTE</property>
-                    <text-property name="displayName">PROSPECCION CONTINGENTE</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["PROSPECCION CONTINGENTE"]</expression>
+                    <property name="name">HASTA_ESTADO</property>
+                    <text-property name="displayName">HASTA_ESTADO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["HASTA_ESTADO"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">EN_ESTUDIO</property>
-                    <text-property name="displayName">EN_ESTUDIO</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["EN_ESTUDIO"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">APROBADO</property>
-                    <text-property name="displayName">APROBADO</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["APROBADO"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">ADJUDICACION</property>
-                    <text-property name="displayName">ADJUDICACION</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["ADJUDICACION"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">PERDIDO</property>
-                    <text-property name="displayName">PERDIDO</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["PERDIDO"]</expression>
+                    <property name="name">FECHA</property>
+                    <text-property name="displayName">FECHA</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FECHA"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <column id="183"/>
-            <column id="184"/>
-            <column id="185"/>
-            <column id="186"/>
-            <column id="187"/>
-            <column id="188"/>
-            <column id="189"/>
-            <column id="190"/>
+            <column id="220"/>
+            <column id="221"/>
+            <column id="222"/>
+            <column id="223"/>
+            <column id="224"/>
             <header>
-                <row id="140">
-                    <cell id="141">
-                        <label id="142">
+                <row id="192">
+                    <cell id="193">
+                        <label id="194">
                             <text-property name="text">CODIGO</text-property>
                         </label>
                     </cell>
-                    <cell id="143">
-                        <label id="144">
+                    <cell id="195">
+                        <label id="196">
                             <text-property name="text">NOMBRE</text-property>
                         </label>
                     </cell>
-                    <cell id="145">
-                        <label id="146">
-                            <text-property name="text">PROSPECCION GENERAL</text-property>
+                    <cell id="197">
+                        <label id="198">
+                            <text-property name="text">DESDE_ESTADO</text-property>
                         </label>
                     </cell>
-                    <cell id="147">
-                        <label id="148">
-                            <text-property name="text">PROSPECCION CONTINGENTE</text-property>
+                    <cell id="199">
+                        <label id="200">
+                            <text-property name="text">HASTA_ESTADO</text-property>
                         </label>
                     </cell>
-                    <cell id="149">
-                        <label id="150">
-                            <text-property name="text">EN_ESTUDIO</text-property>
-                        </label>
-                    </cell>
-                    <cell id="151">
-                        <label id="152">
-                            <text-property name="text">APROBADO</text-property>
-                        </label>
-                    </cell>
-                    <cell id="153">
-                        <label id="154">
-                            <text-property name="text">ADJUDICACION</text-property>
-                        </label>
-                    </cell>
-                    <cell id="155">
-                        <label id="156">
-                            <text-property name="text">PERDIDO</text-property>
+                    <cell id="201">
+                        <label id="202">
+                            <text-property name="text">FECHA</text-property>
                         </label>
                     </cell>
                 </row>
             </header>
             <detail>
-                <row id="157">
-                    <cell id="158">
-                        <data id="159">
+                <row id="203">
+                    <cell id="204">
+                        <data id="205">
                             <property name="resultSetColumn">codigo_oportunidad_c</property>
                         </data>
                     </cell>
-                    <cell id="160">
-                        <data id="161">
+                    <cell id="206">
+                        <data id="207">
                             <property name="resultSetColumn">name</property>
                         </data>
                     </cell>
-                    <cell id="162">
-                        <data id="163">
-                            <property name="resultSetColumn">PROSPECCION GENERAL</property>
+                    <cell id="208">
+                        <data id="209">
+                            <property name="resultSetColumn">DESDE_ESTADO</property>
                         </data>
                     </cell>
-                    <cell id="164">
-                        <data id="165">
-                            <property name="resultSetColumn">PROSPECCION CONTINGENTE</property>
+                    <cell id="210">
+                        <data id="211">
+                            <property name="resultSetColumn">HASTA_ESTADO</property>
                         </data>
                     </cell>
-                    <cell id="166">
-                        <data id="167">
-                            <property name="resultSetColumn">EN_ESTUDIO</property>
-                        </data>
-                    </cell>
-                    <cell id="168">
-                        <data id="169">
-                            <property name="resultSetColumn">APROBADO</property>
-                        </data>
-                    </cell>
-                    <cell id="170">
-                        <data id="171">
-                            <property name="resultSetColumn">ADJUDICACION</property>
-                        </data>
-                    </cell>
-                    <cell id="172">
-                        <data id="173">
-                            <property name="resultSetColumn">PERDIDO</property>
+                    <cell id="212">
+                        <data id="213">
+                            <property name="resultSetColumn">FECHA</property>
                         </data>
                     </cell>
                 </row>
             </detail>
             <footer>
-                <row id="174">
-                    <cell id="175"/>
-                    <cell id="176"/>
-                    <cell id="177"/>
-                    <cell id="178"/>
-                    <cell id="179"/>
-                    <cell id="180"/>
-                    <cell id="181"/>
-                    <cell id="182"/>
+                <row id="214">
+                    <cell id="215"/>
+                    <cell id="216"/>
+                    <cell id="217"/>
+                    <cell id="218"/>
+                    <cell id="219"/>
                 </row>
             </footer>
         </table>
