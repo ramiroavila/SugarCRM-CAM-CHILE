@@ -86,6 +86,12 @@
                     <text-property name="heading">NOMBRE</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">FECHA_CREACION</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FECHA_CREACION</text-property>
+                    <text-property name="heading">FECHA_CREACION</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">DESDE_ESTADO</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">DESDE_ESTADO</text-property>
@@ -120,16 +126,21 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">DESDE_ESTADO</property>
+                        <property name="name">FECHA_CREACION</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">HASTA_ESTADO</property>
+                        <property name="name">DESDE_ESTADO</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
+                        <property name="name">HASTA_ESTADO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
                         <property name="name">FECHA</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -153,27 +164,35 @@
                 </structure>
                 <structure>
                     <property name="position">3</property>
+                    <property name="name">FECHA_CREACION</property>
+                    <property name="nativeName">FECHA_CREACION</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
                     <property name="name">DESDE_ESTADO</property>
                     <property name="nativeName">DESDE_ESTADO</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">4</property>
+                    <property name="position">5</property>
                     <property name="name">HASTA_ESTADO</property>
                     <property name="nativeName">HASTA_ESTADO</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">5</property>
+                    <property name="position">6</property>
                     <property name="name">FECHA</property>
                     <property name="nativeName">FECHA</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities.name as NOMBRE, CASE opportunities_audit.before_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE  opportunities_audit.before_value_string END as DESDE_ESTADO, CASE opportunities_audit.after_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE opportunities_audit.after_value_string END as HASTA_ESTADO, DATE_FORMAT(opportunities_audit.date_created,'%d-%m-%Y') as FECHA FROM opportunities INNER JOIN opportunities_cstm  ON opportunities.id = opportunities_cstm.id_c INNER JOIN opportunities_audit ON opportunities_audit.parent_id = opportunities.id WHERE opportunities.deleted = 0 AND opportunities_audit.field_name = 'sales_stage' ORDER BY opportunities_cstm.codigo_oportunidad_c ASC, opportunities_audit.date_created ASC;]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities.name as NOMBRE, DATE_FORMAT(opportunities.date_entered,'%d-%m-%Y') as FECHA_CREACION, CASE opportunities_audit.before_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE  opportunities_audit.before_value_string END as DESDE_ESTADO, CASE opportunities_audit.after_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE opportunities_audit.after_value_string END as HASTA_ESTADO, DATE_FORMAT(opportunities_audit.date_created,'%d-%m-%Y') as FECHA FROM opportunities INNER JOIN opportunities_cstm  ON opportunities.id = opportunities_cstm.id_c INNER JOIN opportunities_audit ON opportunities_audit.parent_id = opportunities.id WHERE opportunities.deleted = 0 AND opportunities_audit.field_name = 'sales_stage' ORDER BY opportunities_cstm.codigo_oportunidad_c ASC, opportunities_audit.date_created ASC;
+]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -221,7 +240,7 @@
         </simple-master-page>
     </page-setup>
     <body>
-        <table id="191">
+        <table id="225">
             <property name="dataSet">CHILE-MAP-QUERY</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -234,6 +253,12 @@
                     <property name="name">name</property>
                     <text-property name="displayName">NOMBRE</text-property>
                     <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FECHA_CREACION</property>
+                    <text-property name="displayName">FECHA_CREACION</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FECHA_CREACION"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -255,76 +280,88 @@
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <column id="220"/>
-            <column id="221"/>
-            <column id="222"/>
-            <column id="223"/>
-            <column id="224"/>
+            <column id="259"/>
+            <column id="260"/>
+            <column id="261"/>
+            <column id="262"/>
+            <column id="263"/>
+            <column id="264"/>
             <header>
-                <row id="192">
-                    <cell id="193">
-                        <label id="194">
+                <row id="226">
+                    <cell id="227">
+                        <label id="228">
                             <text-property name="text">CODIGO</text-property>
                         </label>
                     </cell>
-                    <cell id="195">
-                        <label id="196">
+                    <cell id="229">
+                        <label id="230">
                             <text-property name="text">NOMBRE</text-property>
                         </label>
                     </cell>
-                    <cell id="197">
-                        <label id="198">
+                    <cell id="231">
+                        <label id="232">
+                            <text-property name="text">FECHA_CREACION</text-property>
+                        </label>
+                    </cell>
+                    <cell id="233">
+                        <label id="234">
                             <text-property name="text">DESDE_ESTADO</text-property>
                         </label>
                     </cell>
-                    <cell id="199">
-                        <label id="200">
+                    <cell id="235">
+                        <label id="236">
                             <text-property name="text">HASTA_ESTADO</text-property>
                         </label>
                     </cell>
-                    <cell id="201">
-                        <label id="202">
+                    <cell id="237">
+                        <label id="238">
                             <text-property name="text">FECHA</text-property>
                         </label>
                     </cell>
                 </row>
             </header>
             <detail>
-                <row id="203">
-                    <cell id="204">
-                        <data id="205">
+                <row id="239">
+                    <cell id="240">
+                        <data id="241">
                             <property name="resultSetColumn">codigo_oportunidad_c</property>
                         </data>
                     </cell>
-                    <cell id="206">
-                        <data id="207">
+                    <cell id="242">
+                        <data id="243">
                             <property name="resultSetColumn">name</property>
                         </data>
                     </cell>
-                    <cell id="208">
-                        <data id="209">
+                    <cell id="244">
+                        <data id="245">
+                            <property name="resultSetColumn">FECHA_CREACION</property>
+                        </data>
+                    </cell>
+                    <cell id="246">
+                        <data id="247">
                             <property name="resultSetColumn">DESDE_ESTADO</property>
                         </data>
                     </cell>
-                    <cell id="210">
-                        <data id="211">
+                    <cell id="248">
+                        <data id="249">
                             <property name="resultSetColumn">HASTA_ESTADO</property>
                         </data>
                     </cell>
-                    <cell id="212">
-                        <data id="213">
+                    <cell id="250">
+                        <data id="251">
                             <property name="resultSetColumn">FECHA</property>
                         </data>
                     </cell>
                 </row>
             </detail>
             <footer>
-                <row id="214">
-                    <cell id="215"/>
-                    <cell id="216"/>
-                    <cell id="217"/>
-                    <cell id="218"/>
-                    <cell id="219"/>
+                <row id="252">
+                    <cell id="253"/>
+                    <cell id="254"/>
+                    <cell id="255"/>
+                    <cell id="256"/>
+                    <cell id="257"/>
+                    <cell id="258"/>
                 </row>
             </footer>
         </table>
