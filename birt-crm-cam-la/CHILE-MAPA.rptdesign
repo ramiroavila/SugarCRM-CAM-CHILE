@@ -80,6 +80,18 @@
                     <text-property name="heading">CODIGO</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">bu_c</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">BU</text-property>
+                    <text-property name="heading">BU</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">INVITACION</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">INVITACION</text-property>
+                    <text-property name="heading">INVITACION</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">name</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">NOMBRE</text-property>
@@ -121,26 +133,36 @@
                     </structure>
                     <structure>
                         <property name="position">2</property>
-                        <property name="name">name</property>
+                        <property name="name">bu_c</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">FECHA_CREACION</property>
+                        <property name="name">INVITACION</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">DESDE_ESTADO</property>
+                        <property name="name">name</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
-                        <property name="name">HASTA_ESTADO</property>
+                        <property name="name">FECHA_CREACION</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
+                        <property name="name">DESDE_ESTADO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">HASTA_ESTADO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
                         <property name="name">FECHA</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -157,42 +179,56 @@
                 </structure>
                 <structure>
                     <property name="position">2</property>
+                    <property name="name">bu_c</property>
+                    <property name="nativeName">bu_c</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">INVITACION</property>
+                    <property name="nativeName">INVITACION</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
                     <property name="name">name</property>
                     <property name="nativeName">name</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
+                    <property name="position">5</property>
                     <property name="name">FECHA_CREACION</property>
                     <property name="nativeName">FECHA_CREACION</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">4</property>
+                    <property name="position">6</property>
                     <property name="name">DESDE_ESTADO</property>
                     <property name="nativeName">DESDE_ESTADO</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">5</property>
+                    <property name="position">7</property>
                     <property name="name">HASTA_ESTADO</property>
                     <property name="nativeName">HASTA_ESTADO</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">8</property>
                     <property name="name">FECHA</property>
                     <property name="nativeName">FECHA</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities.name as NOMBRE, DATE_FORMAT(opportunities.date_entered,'%d-%m-%Y') as FECHA_CREACION, CASE opportunities_audit.before_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE  opportunities_audit.before_value_string END as DESDE_ESTADO, CASE opportunities_audit.after_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE opportunities_audit.after_value_string END as HASTA_ESTADO, DATE_FORMAT(opportunities_audit.date_created,'%d-%m-%Y') as FECHA FROM opportunities INNER JOIN opportunities_cstm  ON opportunities.id = opportunities_cstm.id_c INNER JOIN opportunities_audit ON opportunities_audit.parent_id = opportunities.id WHERE opportunities.deleted = 0 AND opportunities_audit.field_name = 'sales_stage' ORDER BY opportunities_cstm.codigo_oportunidad_c ASC, opportunities_audit.date_created ASC;
-]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT opportunities_cstm.codigo_oportunidad_c as CODIGO, opportunities_cstm.bu_c as BU, 
+CASE opportunities_cstm.tipo_de_invitacion_c WHEN 'DIRECTA' THEN 'DIRECTA' WHEN 'ICITACION_C_PART_BASES' THEN 'LICITACIÓN CON PARTICIPACION EN LAS BASES' WHEN 'LICITACION_S_PART_BASES' THEN 'LICITACIÓN SIN PARTICIPACION EN LAS BASES' ELSE opportunities_cstm.tipo_de_invitacion_c END as INVITACION,opportunities.name as NOMBRE, DATE_FORMAT(opportunities.date_entered,'%d-%m-%Y') as FECHA_CREACION, CASE opportunities_audit.before_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE  opportunities_audit.before_value_string END as DESDE_ESTADO, CASE opportunities_audit.after_value_string WHEN 'Closed Won' THEN 'ADJUDICADO' WHEN 'Closed Lost' THEN 'PERDIDA' ELSE opportunities_audit.after_value_string END as HASTA_ESTADO, DATE_FORMAT(opportunities_audit.date_created,'%d-%m-%Y') as FECHA FROM opportunities INNER JOIN opportunities_cstm  ON opportunities.id = opportunities_cstm.id_c INNER JOIN opportunities_audit ON opportunities_audit.parent_id = opportunities.id WHERE opportunities.deleted = 0 AND opportunities_audit.field_name = 'sales_stage' ORDER BY opportunities_cstm.codigo_oportunidad_c ASC, opportunities_audit.date_created ASC;]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -240,13 +276,25 @@
         </simple-master-page>
     </page-setup>
     <body>
-        <table id="225">
+        <table id="265">
             <property name="dataSet">CHILE-MAP-QUERY</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">codigo_oportunidad_c</property>
                     <text-property name="displayName">CODIGO</text-property>
                     <expression name="expression" type="javascript">dataSetRow["codigo_oportunidad_c"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bu_c</property>
+                    <text-property name="displayName">BU</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bu_c"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">INVITACION</property>
+                    <text-property name="displayName">INVITACION</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["INVITACION"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -280,88 +328,112 @@
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <column id="259"/>
-            <column id="260"/>
-            <column id="261"/>
-            <column id="262"/>
-            <column id="263"/>
-            <column id="264"/>
+            <column id="309"/>
+            <column id="310"/>
+            <column id="311"/>
+            <column id="312"/>
+            <column id="313"/>
+            <column id="314"/>
+            <column id="315"/>
+            <column id="316"/>
             <header>
-                <row id="226">
-                    <cell id="227">
-                        <label id="228">
+                <row id="266">
+                    <cell id="267">
+                        <label id="268">
                             <text-property name="text">CODIGO</text-property>
                         </label>
                     </cell>
-                    <cell id="229">
-                        <label id="230">
+                    <cell id="269">
+                        <label id="270">
+                            <text-property name="text">BU</text-property>
+                        </label>
+                    </cell>
+                    <cell id="271">
+                        <label id="272">
+                            <text-property name="text">INVITACION</text-property>
+                        </label>
+                    </cell>
+                    <cell id="273">
+                        <label id="274">
                             <text-property name="text">NOMBRE</text-property>
                         </label>
                     </cell>
-                    <cell id="231">
-                        <label id="232">
+                    <cell id="275">
+                        <label id="276">
                             <text-property name="text">FECHA_CREACION</text-property>
                         </label>
                     </cell>
-                    <cell id="233">
-                        <label id="234">
+                    <cell id="277">
+                        <label id="278">
                             <text-property name="text">DESDE_ESTADO</text-property>
                         </label>
                     </cell>
-                    <cell id="235">
-                        <label id="236">
+                    <cell id="279">
+                        <label id="280">
                             <text-property name="text">HASTA_ESTADO</text-property>
                         </label>
                     </cell>
-                    <cell id="237">
-                        <label id="238">
+                    <cell id="281">
+                        <label id="282">
                             <text-property name="text">FECHA</text-property>
                         </label>
                     </cell>
                 </row>
             </header>
             <detail>
-                <row id="239">
-                    <cell id="240">
-                        <data id="241">
+                <row id="283">
+                    <cell id="284">
+                        <data id="285">
                             <property name="resultSetColumn">codigo_oportunidad_c</property>
                         </data>
                     </cell>
-                    <cell id="242">
-                        <data id="243">
+                    <cell id="286">
+                        <data id="287">
+                            <property name="resultSetColumn">bu_c</property>
+                        </data>
+                    </cell>
+                    <cell id="288">
+                        <data id="289">
+                            <property name="resultSetColumn">INVITACION</property>
+                        </data>
+                    </cell>
+                    <cell id="290">
+                        <data id="291">
                             <property name="resultSetColumn">name</property>
                         </data>
                     </cell>
-                    <cell id="244">
-                        <data id="245">
+                    <cell id="292">
+                        <data id="293">
                             <property name="resultSetColumn">FECHA_CREACION</property>
                         </data>
                     </cell>
-                    <cell id="246">
-                        <data id="247">
+                    <cell id="294">
+                        <data id="295">
                             <property name="resultSetColumn">DESDE_ESTADO</property>
                         </data>
                     </cell>
-                    <cell id="248">
-                        <data id="249">
+                    <cell id="296">
+                        <data id="297">
                             <property name="resultSetColumn">HASTA_ESTADO</property>
                         </data>
                     </cell>
-                    <cell id="250">
-                        <data id="251">
+                    <cell id="298">
+                        <data id="299">
                             <property name="resultSetColumn">FECHA</property>
                         </data>
                     </cell>
                 </row>
             </detail>
             <footer>
-                <row id="252">
-                    <cell id="253"/>
-                    <cell id="254"/>
-                    <cell id="255"/>
-                    <cell id="256"/>
-                    <cell id="257"/>
-                    <cell id="258"/>
+                <row id="300">
+                    <cell id="301"/>
+                    <cell id="302"/>
+                    <cell id="303"/>
+                    <cell id="304"/>
+                    <cell id="305"/>
+                    <cell id="306"/>
+                    <cell id="307"/>
+                    <cell id="308"/>
                 </row>
             </footer>
         </table>
