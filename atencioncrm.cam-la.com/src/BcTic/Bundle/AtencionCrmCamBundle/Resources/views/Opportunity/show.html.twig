@@ -98,17 +98,17 @@
               <th colspan="2">
                 <h4>Criterio</h4>
               </th>
-              <th>
+              <th colspan="2">
                 <h4>Resultado</h4>
               </th>
             </tr>
             <tr>
-              <th rowspan="6">
+              <th rowspan="8">
                 <h3 class="text-center">Interés comercial</h3>
               </th>
               <th style="width: 25%;">Backlog total (M U$)</th>
-              <td style="width: 25%;">{{ entity.backlog_total_c }}</td>
-              <th rowspan="4"></th>
+              <td style="width: 25%;">{{ entity.backlog_total_c }}&nbsp;|&nbsp;{{ entity.tamanno_backlog_c | trans }}</td>
+              <th rowspan="4" colspan="2"></th>
             </tr>
             <tr>
               <th>Márgen target</th>
@@ -116,12 +116,12 @@
             </tr>
             <tr>
               <th>Plazo (Meses)</th>
-              <td>{{-entity.plazo_c-}}</td>
+              <td>{{-entity.plazo_c-}}&nbsp;|&nbsp;{{ entity.tamanno_plazo_c | trans }}</td>
             </tr>
             <tr>
               <th>Riesgo financiamiento cliente</th>
               <td>
-                {% set riesgo = 'riesgo_' ~ entity.riesgo_financiero_cliente_c %}
+                {% set riesgo = 'riesgo_' ~ entity.riesgo_financiero_cliente_c  %}
                 {{-riesgo|trans-}}
               </td>
             </tr>
@@ -129,7 +129,19 @@
               <th colspan="4">Comentarios y justificaciones de interés comercial</th>
             </tr>
             <tr>
-              <td colspan="4">{{-entity.comentarios_interes_comercia_c-}}<br/><br/></td>
+              <th>Tipo de cliente</th>
+              <td>{{-account.account_type | trans -}}</td>
+              <th>Tipo compromiso / Propuesta</th>
+              <td>{{-entity.propuesta_c-}}</td>
+            </tr>
+            <tr>
+              <th>Monto Esfuerzo Comercial (MUS$)</th>
+              <td>{{-entity.monto_esfuerzo_comercial_c-}}</td>
+              <th>M. Backlog al 31/12 (MUS$)</th>
+              <td>{{-entity.m_backlog_fin_c-}}</td>
+            </tr>
+            <tr>
+              <td colspan="4"><i>{{-entity.comentarios_interes_comercia_c-}}</i><br/><br/></td>
             </tr>
 
             <tr>
@@ -141,7 +153,7 @@
                 {% set competividad = 'competividad_' ~ entity.competividad_en_precio_c %}
                 {{-competividad|trans-}}
               </td>
-              <th rowspan="8"></th>
+              <th rowspan="8" colspan="2"></th>
             </tr>
             <tr>
               <th>Competitividad técnica</th>
@@ -173,7 +185,7 @@
             </tr>
             <tr>
               <th>Tipo de invitación</th>
-              <td>{{-entity.tipo_de_invitacion_c-}}</td>
+              <td>{{-entity.tipo_de_invitacion_c | trans -}}</td>
             </tr>
             <tr>
               <th>Propuesta de valor diferenciadora</th>
@@ -196,7 +208,7 @@
               </th>
               <th style="width: 25%;">Experiencia con mandante</th>
               <td style="width: 25%;">{{-entity.experiencia_con_mandante_c | trans }}</td>
-              <th rowspan="3"></th>
+              <th rowspan="3" colspan="2"></th>
             </tr>
             <tr>
               <th>Experiencia con entorno/estándares</th>
@@ -219,7 +231,7 @@
               </th>
               <th style="width: 25%;">Experiencia presupuestal</th>
               <td style="width: 25%;">{{-entity.experiencia_presupuestal_c | trans}}</td>
-              <th rowspan="4"></th>
+              <th rowspan="4" colspan="2"></th>
             </tr>
             <tr>
               <th>Tiempo para desarrollo</th>
@@ -239,14 +251,14 @@
                 <h3 class="text-center">Recomendación de la herramienta</h3>
               </th>
               <td colspan="2"><br/><br/></td>
-              <td></td>
+              <td colspan="2"></td>
             </tr>
             <tr>
              <th rowspan="3">
                 <h3 class="text-center">Decisión comité</h3>
              </th>
              <td colspan="2"><br/><br/></td>
-             <td></td>
+             <td colspan="2"></td>
            </tr>
            <tr>
              <th colspan="4">Estrategia para ganar/Consideraciones</th>

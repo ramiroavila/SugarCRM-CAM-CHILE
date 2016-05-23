@@ -41,7 +41,6 @@ class OpportunityController extends Controller
 
       $sessionId = $login_result['id'];
 
-      //Busco el id:
       //Buscar el cliente:
       $get_entry_list_parameters = array(
          'session' => $sessionId,
@@ -70,7 +69,36 @@ class OpportunityController extends Controller
 
        }
 
-      return array('entity' => $info);
+       //Buscar el cliente:
+       $get_entry_list_parameters = array(
+          'session' => $sessionId,
+          'module_name' => 'Accounts',
+          'query' => "accounts.id = '".$info['account_id']."'",
+          'order_by' => "date_entered ASC",
+          'offset' => '0',
+          'link_name_to_fields_array' => array(
+          ),
+          'max_results' => '1',
+          'deleted' => '0',
+          'Favorites' => false,
+        );
+
+        $result = $client->call('get_entry_list', $get_entry_list_parameters);
+        if (isset($result['faultstring'])) throw new \Exception($result['detail']);
+
+        //Parseo la info:
+        $accountInfo = array();
+        foreach ($result['entry_list'] as $items) {
+          $accountInfo = array();
+
+          foreach ($items['name_value_list'] as $name => $value) {
+            $accountInfo[$value['name']] = utf8_encode($value['value']);
+          }
+
+        }
+
+       //Busco la cuenta:
+      return array('entity' => $info, 'account' => $accountInfo);
     }
 
     protected function searchInResult($item = -1,$result = array(), $flag = 'account_id') {
