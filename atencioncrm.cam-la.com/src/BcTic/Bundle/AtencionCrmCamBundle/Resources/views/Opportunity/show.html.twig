@@ -145,7 +145,7 @@
             </tr>
 
             <tr>
-              <th rowspan="10">
+              <th rowspan="13">
                 <h3 class="text-center">Oportunidad de ganar</h3>
               </th>
               <th style="width: 25%;">Competitividad en precio</th>
@@ -199,6 +199,22 @@
               <th colspan="4">Comentarios y justificaciones de oportunidad de ganar</th>
             </tr>
             <tr>
+              <th>Propuesta de valor</th>
+              <td></td>
+              <th></th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Nom. Competidores</th>
+              <td></td>
+              <th>Márgen del mercado</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Posición proveedor actual</th>
+              <td colspan="3"></td>
+            </tr>
+            <tr>
               <td colspan="4">{{-entity.comentarios_oportunidad_c-}}<br/><br/></td>
             </tr>
 
@@ -216,7 +232,9 @@
             </tr>
             <tr>
               <th>Requerimientos caja M USD</th>
-              <td>{% set caja = 'requerimientos_caja_' ~ entity.requerimiento_caja_c %}{{ caja | trans }}</td>
+              <td>{{-entity.tamanno_req_caja_c | trans -}}&nbsp;|&nbsp;
+              {% set caja = 'requerimientos_caja_' ~ entity.requerimiento_caja_c %}{{ caja | trans }}
+              </td>
             </tr>
             <tr>
               <th colspan="4">Comentarios y justificaciones de capacidad empresa</th>
@@ -239,11 +257,11 @@
             </tr>
             <tr>
               <th>Documentación bases</th>
-              <td></td>
+              <td>{{-entity.documentacion_bases_c | trans}}</td>
             </tr>
             <tr>
               <th>Documentación anexos (planos)</th>
-              <td></td>
+              <td>{{-entity.documentacion_anexos_c | trans}}</td>
             </tr>
 
             <tr>
