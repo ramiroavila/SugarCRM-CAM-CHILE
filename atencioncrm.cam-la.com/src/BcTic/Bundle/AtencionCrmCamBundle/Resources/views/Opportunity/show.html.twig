@@ -132,7 +132,7 @@
               <th>Tipo de cliente</th>
               <td>{{-account.account_type | trans -}}</td>
               <th>Tipo compromiso / Propuesta</th>
-              <td>{{-entity.propuesta_c-}}</td>
+              <td>{{-entity.tipo_de_compromiso_c-}}</td>
             </tr>
             <tr>
               <th>Monto Esfuerzo Comercial (MUS$)</th>
@@ -200,19 +200,19 @@
             </tr>
             <tr>
               <th>Propuesta de valor</th>
-              <td></td>
-              <th></th>
-              <td></td>
+              <td>{{-entity.propuesta_de_valor_c-}}</td>
+              <th>¿Socio?</th>
+              <td>{{-entity.socio_c-}}</td>
             </tr>
             <tr>
-              <th>Nom. Competidores</th>
-              <td></td>
+              <th>Nombre de competidores</th>
+              <td>{{-entity.nombre_competidores_c-}}</td>
               <th>Márgen del mercado</th>
-              <td></td>
+              <td>{{-entity.margen_del_mercado_c-}}%</td>
             </tr>
             <tr>
               <th>Posición proveedor actual</th>
-              <td colspan="3"></td>
+              <td colspan="3">{{-entity.posicion_proveedor_actual_c-}}</td>
             </tr>
             <tr>
               <td colspan="4">{{-entity.comentarios_oportunidad_c-}}<br/><br/></td>
