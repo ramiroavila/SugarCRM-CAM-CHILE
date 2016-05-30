@@ -3,6 +3,87 @@
 
 {% block body %}
 
+{% set interes_comercial = 0 %}
+
+{% set interes_comercial_factor_1 = 0 %}
+
+{% if entity.tamanno_backlog_c == 'GRANDE' %}
+{% set interes_comercial_factor_1 = 100 %}
+{% endif %}
+
+{% if entity.tamanno_backlog_c == 'MEDIANO' %}
+{% set interes_comercial_factor_1 = 75 %}
+{% endif %}
+
+{% if entity.tamanno_backlog_c == 'PEQUENNO' %}
+{% set interes_comercial_factor_1 = 50 %}
+{% endif %}
+
+{% set interes_comercial_ponderacion_factor_1 = 0.30 %}
+
+{% set interes_comercial_factor_2 = 0 %}
+
+{% if entity.margen_esperado_c > 9.9 %}
+  {% set interes_comercial_factor_2 = 30 %}
+{% endif %}
+
+{% if entity.margen_esperado_c > 14.9 %}
+  {% set interes_comercial_factor_2 = 60 %}
+{% endif %}
+
+{% if entity.margen_esperado_c > 19.9 %}
+  {% set interes_comercial_factor_2 = 80 %}
+{% endif %}
+
+{% if entity.margen_esperado_c > 24.5 %}
+  {% set interes_comercial_factor_2 = 100 %}
+{% endif %}
+
+{% set interes_comercial_ponderacion_factor_2 = 0.25 %}
+
+{% set interes_comercial_factor_3 = 0 %}
+
+{% if entity.tamanno_plazo_c == 'GRANDE' %}
+{% set interes_comercial_factor_3 = 100 %}
+{% endif %}
+
+{% if entity.tamanno_plazo_c == 'MEDIANO' %}
+{% set interes_comercial_factor_3 = 75 %}
+{% endif %}
+
+{% if entity.tamanno_plazo_c == 'PEQUENNO' %}
+{% set interes_comercial_factor_3 = 50 %}
+{% endif %}
+
+{% set interes_comercial_ponderacion_factor_3 = 0.25 %}
+
+{% set interes_comercial_factor_4 = 0 %}
+
+{% if entity.riesgo_financiero_cliente_c == 10 %}
+{% set interes_comercial_factor_4 = 20 %}
+{% endif %}
+
+{% if entity.riesgo_financiero_cliente_c == 5 %}
+{% set interes_comercial_factor_4 = 75 %}
+{% endif %}
+
+{% if entity.riesgo_financiero_cliente_c == 1 %}
+{% set interes_comercial_factor_4 = 100 %}
+{% endif %}
+
+{% set interes_comercial_ponderacion_factor_4 = 0.20 %}
+
+{% set interes_comercial = interes_comercial_factor_1 * interes_comercial_ponderacion_factor_1 + interes_comercial_factor_2 * interes_comercial_ponderacion_factor_2 + interes_comercial_factor_3 * interes_comercial_ponderacion_factor_3 + interes_comercial_factor_4 * interes_comercial_ponderacion_factor_4 %}
+
+{% set class_interes_comercial = "alert alert-danger" %}
+
+{% if interes_comercial > 49 %}
+{% set class_interes_comercial = "alert alert-warning" %}
+{% endif %}
+
+{% if interes_comercial > 74 %}
+  {% set class_interes_comercial = "alert alert-success" %}
+{% endif %}
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -108,7 +189,7 @@
               </th>
               <th style="width: 25%;">Backlog total (M U$)</th>
               <td style="width: 25%;">{{ entity.backlog_total_c }}&nbsp;|&nbsp;{{ entity.tamanno_backlog_c | trans }}</td>
-              <th rowspan="4" colspan="2"></th>
+              <th rowspan="4" colspan="2" class="{{-class_interes_comercial-}}" style="text-align: center!important; vertical-align: middle; font-size:60px;">{{-interes_comercial|number_format(0,'.',',')-}}%</th>
             </tr>
             <tr>
               <th>Márgen target</th>
@@ -121,8 +202,8 @@
             <tr>
               <th>Riesgo financiamiento cliente</th>
               <td>
-                {% set riesgo = 'riesgo_' ~ entity.riesgo_financiero_cliente_c  %}
-                {{-riesgo|trans-}}
+                {% set riesgo = 'RIESGO_' ~ entity.riesgo_financiero_cliente_c  %}
+                {{-riesgo | trans-}}
               </td>
             </tr>
             <tr>
