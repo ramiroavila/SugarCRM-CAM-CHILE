@@ -85,6 +85,190 @@
   {% set class_interes_comercial = "alert alert-success" %}
 {% endif %}
 
+{% set oportunidad_de_ganar = 0 %}
+
+{% set oportunidad_de_ganar_factor_1 = 0 %}
+
+{% if entity.competividad_en_precio_c == 10 %}
+{% set oportunidad_de_ganar_factor_1 = 100 %}
+{% endif %}
+
+{% if entity.competividad_en_precio_c == 5 %}
+{% set oportunidad_de_ganar_factor_1 = 70 %}
+{% endif %}
+
+{% if entity.competividad_en_precio_c == 1 %}
+{% set oportunidad_de_ganar_factor_1 = 30 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_1 = 0.09 %}
+
+{% set oportunidad_de_ganar_factor_2 = 0 %}
+
+{% if entity.competitividad_tecnica_c == 10 %}
+{% set oportunidad_de_ganar_factor_2 = 100 %}
+{% endif %}
+
+{% if entity.competitividad_tecnica_c == 5 %}
+{% set oportunidad_de_ganar_factor_2 = 70 %}
+{% endif %}
+
+{% if entity.competitividad_tecnica_c == 1 %}
+{% set oportunidad_de_ganar_factor_2 = 30 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_2 = 0.09 %}
+
+{% set oportunidad_de_ganar_factor_3 = 0 %}
+
+{% if entity.fidelizacion_comercial_c == 10 %}
+{% set oportunidad_de_ganar_factor_3 = 100 %}
+{% endif %}
+
+{% if entity.fidelizacion_comercial_c == 5 %}
+{% set oportunidad_de_ganar_factor_3 = 70 %}
+{% endif %}
+
+{% if entity.fidelizacion_comercial_c == 1 %}
+{% set oportunidad_de_ganar_factor_3 = 30 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_3 = 0.15 %}
+
+{% set oportunidad_de_ganar_factor_4 = 0 %}
+
+{% if entity.fidelizacion_tecnica_c == 10 %}
+{% set oportunidad_de_ganar_factor_4 = 100 %}
+{% endif %}
+
+{% if entity.fidelizacion_tecnica_c == 5 %}
+{% set oportunidad_de_ganar_factor_4 = 70 %}
+{% endif %}
+
+{% if entity.fidelizacion_tecnica_c == 1 %}
+{% set oportunidad_de_ganar_factor_4 = 30 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_4 = 0.15 %}
+
+{% set oportunidad_de_ganar_factor_5 = 0 %}
+
+{% if entity.fidelizacion_compras_c == 10 %}
+{% set oportunidad_de_ganar_factor_5 = 100 %}
+{% endif %}
+
+{% if entity.fidelizacion_compras_c == 5 %}
+{% set oportunidad_de_ganar_factor_5 = 70 %}
+{% endif %}
+
+{% if entity.fidelizacion_compras_c == 1 %}
+{% set oportunidad_de_ganar_factor_5 = 30 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_5 = 0.15 %}
+
+{% set oportunidad_de_ganar_factor_6 = 0 %}
+
+{% if entity.tipo_de_invitacion_c == 'DIRECTA' %}
+{% set oportunidad_de_ganar_factor_6 = 100 %}
+{% endif %}
+
+{% if entity.tipo_de_invitacion_c == 'ICITACION_C_PART_BASES' %}
+{% set oportunidad_de_ganar_factor_6 = 75 %}
+{% endif %}
+
+{% if entity.tipo_de_invitacion_c == 'LICITACION_S_PART_BASES' %}
+{% set oportunidad_de_ganar_factor_6 = 40 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_6 = 0.135 %}
+
+{% set oportunidad_de_ganar_factor_7 = 0 %}
+
+{% if entity.propuesta_de_valor_diferenci_c == 'YES' %}
+{% set oportunidad_de_ganar_factor_7 = 100 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_7 = 0.10 %}
+
+{% set oportunidad_de_ganar_factor_8 = 0 %}
+
+{% if entity.cantidad_de_competidores_c == 'NINGUNO' %}
+{% set oportunidad_de_ganar_factor_8 = 100 %}
+{% endif %}
+
+{% if entity.cantidad_de_competidores_c == 'MENOR_A_4' %}
+{% set oportunidad_de_ganar_factor_8 = 75 %}
+{% endif %}
+
+{% if entity.cantidad_de_competidores_c == 'ENTRE_4_Y_8' %}
+{% set oportunidad_de_ganar_factor_8 = 60 %}
+{% endif %}
+
+{% if entity.cantidad_de_competidores_c == 'MAYOR_A_8' %}
+{% set oportunidad_de_ganar_factor_8 = 20 %}
+{% endif %}
+
+{% set oportunidad_de_ganar_ponderacion_factor_8 = 0.135 %}
+
+{% set oportunidad_de_ganar = oportunidad_de_ganar_factor_1 * oportunidad_de_ganar_ponderacion_factor_1 + oportunidad_de_ganar_factor_2 * oportunidad_de_ganar_ponderacion_factor_2 + oportunidad_de_ganar_factor_3 * oportunidad_de_ganar_ponderacion_factor_3 + oportunidad_de_ganar_factor_4 * oportunidad_de_ganar_ponderacion_factor_4 + oportunidad_de_ganar_factor_5 * oportunidad_de_ganar_ponderacion_factor_5 + oportunidad_de_ganar_factor_6 * oportunidad_de_ganar_ponderacion_factor_6 + oportunidad_de_ganar_factor_7 * oportunidad_de_ganar_ponderacion_factor_7 + oportunidad_de_ganar_factor_8 * oportunidad_de_ganar_ponderacion_factor_8 %}
+
+{% set class_oportunidad_de_ganar = "alert alert-danger" %}
+
+{% if oportunidad_de_ganar > 49 %}
+{% set class_oportunidad_de_ganar = "alert alert-warning" %}
+{% endif %}
+
+{% if oportunidad_de_ganar > 74 %}
+  {% set class_oportunidad_de_ganar = "alert alert-success" %}
+{% endif %}
+
+{% set capacidad_empresa = 0 %}
+
+{% set capacidad_empresa_factor_1 = 50 %}
+
+{% if entity.experiencia_con_mandante_c == 'YES' %}
+{% set capacidad_empresa_factor_1 = 100 %}
+{% endif %}
+
+{% set capacidad_empresa_ponderacion_factor_1 = 0.30 %}
+
+{% set capacidad_empresa_factor_2 = 50 %}
+
+{% if entity.experiencia_con_mandante_c == 'YES' %}
+{% set capacidad_empresa_factor_2 = 100 %}
+{% endif %}
+
+{% set capacidad_empresa_ponderacion_factor_2 = 0.40 %}
+
+{% set capacidad_empresa_factor_3 = 0 %}
+
+{% if entity.requerimiento_caja_c == 10 %}
+{% set capacidad_empresa_factor_3 = 30 %}
+{% endif %}
+
+{% if entity.requerimiento_caja_c == 5 %}
+{% set capacidad_empresa_factor_3 = 70 %}
+{% endif %}
+
+{% if entity.requerimiento_caja_c == 1 %}
+{% set capacidad_empresa_factor_3 = 100 %}
+{% endif %}
+
+{% set capacidad_empresa_ponderacion_factor_3 = 0.30 %}
+
+{% set capacidad_empresa = capacidad_empresa_factor_1 * capacidad_empresa_ponderacion_factor_1 + capacidad_empresa_factor_2 * capacidad_empresa_ponderacion_factor_2 + capacidad_empresa_factor_3 * capacidad_empresa_ponderacion_factor_3 %}
+
+{% set class_capacidad_empresa = "alert alert-danger" %}
+
+{% if capacidad_empresa > 49 %}
+{% set class_capacidad_empresa = "alert alert-warning" %}
+{% endif %}
+
+{% if capacidad_empresa > 74 %}
+{% set class_capacidad_empresa = "alert alert-success" %}
+{% endif %}
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="row">
@@ -234,7 +418,7 @@
                 {% set competividad = 'competividad_' ~ entity.competividad_en_precio_c %}
                 {{-competividad|trans-}}
               </td>
-              <th rowspan="8" colspan="2"></th>
+              <th rowspan="8" colspan="2" class="{{-class_oportunidad_de_ganar-}}" style="text-align: center!important; vertical-align: middle; font-size:60px;">{{-oportunidad_de_ganar|number_format(0,'.',',')-}}%</th>
             </tr>
             <tr>
               <th>Competitividad técnica</th>
@@ -305,7 +489,7 @@
               </th>
               <th style="width: 25%;">Experiencia con mandante</th>
               <td style="width: 25%;">{{-entity.experiencia_con_mandante_c | trans }}</td>
-              <th rowspan="3" colspan="2"></th>
+              <th rowspan="3" colspan="2" class="{{-class_capacidad_empresa-}}" style="text-align: center!important; vertical-align: middle; font-size:60px;">{{-capacidad_empresa|number_format(0,'.',',')-}}%</th>
             </tr>
             <tr>
               <th>Experiencia con entorno/estándares</th>
@@ -314,7 +498,7 @@
             <tr>
               <th>Requerimientos caja M USD</th>
               <td>{{-entity.tamanno_req_caja_c | trans -}}&nbsp;|&nbsp;
-              {% set caja = 'requerimientos_caja_' ~ entity.requerimiento_caja_c %}{{ caja | trans }}
+              {% set caja = 'requerimientos_caja_' ~ entity.tamanno_req_caja_c %}{{ caja | trans }}
               </td>
             </tr>
             <tr>
@@ -323,7 +507,6 @@
             <tr>
               <td colspan="4">{{-entity.comentarios_capacidad_empres_c}}<br/><br/></td>
             </tr>
-
             <tr>
               <th rowspan="4">
                 <h3 class="text-center">Capacidad presupuestal</h3>
