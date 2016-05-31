@@ -9,6 +9,9 @@ knp_snappy:
         binary:     "%wkhtmltopdf_path%" #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
         options:    []
 
+knp_snappy:
+    temporary_folder: %kernel.cache_dir%/snappy        
+
 framework:
     #esi:             ~
     translator:      { fallback: "es" }
