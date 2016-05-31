@@ -3,6 +3,7 @@
 namespace BcTic\Bundle\AtencionCrmCamBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormError as FormError;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,8 +17,27 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 class OpportunityController extends Controller
 {
+
+  /**
+   * @Route("/oportunidades/ver-ficha-de-selectividad/{id}", name="ficha-de-selectividad" )
+   *
+   */
+  public function showPdfAction($id) {
+
+    $pageUrl = $this->generateUrl('ficha-de-selectividad-html', array('id' => $id), true); // use absolute path!
+
+    return new Response(
+        $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+        200,
+        array(
+            'Content-Type'          => 'application/pdf',
+            'Content-Disposition'   => 'attachment; filename="'.$id.'.pdf"'
+        )
+    );
+  }
+
     /**
-     * @Route("/oportunidades/ver-ficha-de-selectividad/{id}", name="ficha-de-selectividad" )
+     * @Route("/oportunidades/ficha-de-selectividad/{id}.html", name="ficha-de-selectividad-html" )
      * @Template()
      */
     public function showAction($id) {

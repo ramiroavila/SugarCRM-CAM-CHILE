@@ -3,6 +3,12 @@ imports:
     - { resource: security.yml }
     - { resource: '@BcTicVictoriaBundle/Resources/config/config.yml' }
 
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "%wkhtmltopdf_path%" #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:    []
+
 framework:
     #esi:             ~
     translator:      { fallback: "es" }

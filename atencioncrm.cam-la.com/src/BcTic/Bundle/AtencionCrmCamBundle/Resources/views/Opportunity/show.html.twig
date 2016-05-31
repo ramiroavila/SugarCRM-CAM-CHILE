@@ -269,6 +269,76 @@
 {% set class_capacidad_empresa = "alert alert-success" %}
 {% endif %}
 
+{% set capacidad_presupuestal = 0 %}
+
+{% set capacidad_presupuestal_factor_1 = 50 %}
+
+{% if entity.experiencia_presupuestal_c == 'YES' %}
+{% set capacidad_presupuestal_factor_1 = 100 %}
+{% endif %}
+
+{% set capacidad_presupuestal_ponderacion_factor_1 = 0.25 %}
+
+{% set capacidad_presupuestal_factor_2 = 0 %}
+
+{% if entity.tiempo_para_desarrollo_c == 'HOLGADO' %}
+{% set capacidad_presupuestal_factor_2 = 100 %}
+{% endif %}
+
+{% if entity.tiempo_para_desarrollo_c == 'NORMAL' %}
+{% set capacidad_presupuestal_factor_2 = 70 %}
+{% endif %}
+
+{% if entity.tiempo_para_desarrollo_c == 'CORTO' %}
+{% set capacidad_presupuestal_factor_2 = 30 %}
+{% endif %}
+
+{% set capacidad_presupuestal_ponderacion_factor_2 = 0.25 %}
+
+{% set capacidad_presupuestal_factor_3 = 0 %}
+
+{% if entity.documentacion_bases_c == 'YES' %}
+{% set capacidad_presupuestal_factor_3 = 100 %}
+{% endif %}
+
+{% set capacidad_presupuestal_ponderacion_factor_3 = 0.25 %}
+
+{% set capacidad_presupuestal_factor_4 = 0 %}
+
+{% if entity.documentacion_anexos_c == 'YES' %}
+{% set capacidad_presupuestal_factor_4 = 100 %}
+{% endif %}
+
+{% set capacidad_presupuestal_ponderacion_factor_4 = 0.25 %}
+
+{% set capacidad_presupuestal = capacidad_presupuestal_factor_1 * capacidad_presupuestal_ponderacion_factor_1 + capacidad_presupuestal_factor_2 * capacidad_presupuestal_ponderacion_factor_2 + capacidad_presupuestal_factor_3 * capacidad_presupuestal_ponderacion_factor_3 + capacidad_presupuestal_factor_4 * capacidad_presupuestal_ponderacion_factor_4 %}
+
+{% set class_capacidad_presupuestal = "alert alert-danger" %}
+
+{% if capacidad_presupuestal > 49 %}
+{% set class_capacidad_presupuestal = "alert alert-warning" %}
+{% endif %}
+
+{% if capacidad_presupuestal > 74 %}
+{% set class_capacidad_presupuestal = "alert alert-success" %}
+{% endif %}
+
+{% set recomendacion_de_la_herramienta = 0 %}
+
+{% if interes_comercial_factor_2 > 0 %}
+  {% set recomendacion_de_la_herramienta = interes_comercial * 0.25 + oportunidad_de_ganar * 0.50 + capacidad_empresa * 0.25 %}
+{% endif %}
+
+{% set class_recomendacion_de_la_herramienta = "alert alert-danger" %}
+
+{% if recomendacion_de_la_herramienta > 49 %}
+{% set class_recomendacion_de_la_herramienta= "alert alert-warning" %}
+{% endif %}
+
+{% if recomendacion_de_la_herramienta > 74 %}
+{% set class_recomendacion_de_la_herramienta = "alert alert-success" %}
+{% endif %}
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="row">
@@ -498,7 +568,7 @@
             <tr>
               <th>Requerimientos caja M USD</th>
               <td>{{-entity.tamanno_req_caja_c | trans -}}&nbsp;|&nbsp;
-              {% set caja = 'requerimientos_caja_' ~ entity.tamanno_req_caja_c %}{{ caja | trans }}
+              {% set caja = 'requerimientos_caja_' ~ entity.requerimiento_caja_c %}{{ caja | trans }}
               </td>
             </tr>
             <tr>
@@ -513,7 +583,7 @@
               </th>
               <th style="width: 25%;">Experiencia presupuestal</th>
               <td style="width: 25%;">{{-entity.experiencia_presupuestal_c | trans}}</td>
-              <th rowspan="4" colspan="2"></th>
+              <th rowspan="4" colspan="2" class="{{-class_capacidad_presupuestal-}}" style="text-align: center!important; vertical-align: middle; font-size:60px;">{{-capacidad_presupuestal|number_format(0,'.',',')-}}%</th>
             </tr>
             <tr>
               <th>Tiempo para desarrollo</th>
@@ -532,15 +602,24 @@
               <th>
                 <h3 class="text-center">Recomendación de la herramienta</h3>
               </th>
-              <td colspan="2"><br/><br/></td>
-              <td colspan="2"></td>
+              <td colspan="2" class="{{-class_recomendacion_de_la_herramienta-}}" style="text-align: center!important; vertical-align: middle; font-size:30px;">
+                 {% if recomendacion_de_la_herramienta > 64 %}
+                   Aprobar
+                 {% else %}
+                   Rechazar
+                 {% endif %}
+              </td>
+              <th colspan="2" class="{{-class_recomendacion_de_la_herramienta-}}" style="text-align: center!important; vertical-align: middle; font-size:60px;">{{-recomendacion_de_la_herramienta|number_format(0,'.',',')-}}%</th>
             </tr>
             <tr>
              <th rowspan="3">
                 <h3 class="text-center">Decisión comité</h3>
              </th>
-             <td colspan="2"><br/><br/></td>
-             <td colspan="2"></td>
+             <td colspan="4">
+               <br/>
+               <h3 class="text-center">_____ Aprobar  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _____ Rechazar</h3>
+               <br/>
+             </td>
            </tr>
            <tr>
              <th colspan="4">Estrategia para ganar/Consideraciones</th>

@@ -19,7 +19,8 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "bctic-leobarrientosc/victoriabundle" : "~1.0",
-        "noiselabs/nusoap-bundle": "dev-master"
+        "noiselabs/nusoap-bundle": "dev-master",
+        "knplabs/knp-snappy-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -27,6 +28,9 @@
     "repositories" : [{
         "type" : "vcs",
         "url" : "https://github.com/leonardobarrientosc/VictoriaSymfonyTemplateGenerator.git"
+    },
+    {
+       "url": "https://packagist.org", "type": "composer" 
     },
     {
             "type": "package",

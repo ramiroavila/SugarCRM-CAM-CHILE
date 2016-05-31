@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new BcTic\Bundle\AtencionCrmCamBundle\BcTicAtencionCrmCamBundle(),
             new BcTic\VictoriaBundle\BcTicVictoriaBundle(),
             new NoiseLabs\Bundle\NuSOAPBundle\NoiseLabsNuSOAPBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
