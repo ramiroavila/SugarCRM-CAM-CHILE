@@ -37,7 +37,7 @@ class OpportunityController extends Controller
   }
 
     /**
-     * @Route("/oportunidades/ficha-de-selectividad/{id}.html", name="ficha-de-selectividad" )
+     * @Route("/oportunidades/ficha-de-selectividad/{id}", name="ficha-de-selectividad" )
      * @Template()
      */
     public function showAction($id) {
