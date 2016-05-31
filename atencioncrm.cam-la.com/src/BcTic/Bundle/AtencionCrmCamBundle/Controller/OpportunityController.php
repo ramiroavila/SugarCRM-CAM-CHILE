@@ -19,7 +19,7 @@ class OpportunityController extends Controller
 {
 
   /**
-   * @Route("/oportunidades/ver-ficha-de-selectividad/{id}", name="ficha-de-selectividad" )
+   * @Route("/oportunidades/ver-ficha-de-selectividad/{id}.pdf", name="ficha-de-selectividad-pdf" )
    *
    */
   public function showPdfAction($id) {
@@ -37,7 +37,7 @@ class OpportunityController extends Controller
   }
 
     /**
-     * @Route("/oportunidades/ficha-de-selectividad/{id}.html", name="ficha-de-selectividad-html" )
+     * @Route("/oportunidades/ficha-de-selectividad/{id}.html", name="ficha-de-selectividad" )
      * @Template()
      */
     public function showAction($id) {
